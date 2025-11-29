@@ -218,7 +218,22 @@ function drawBoundingBox(map, bbox, name) {
         ]
     };
 
+    const centerLabel = {
+        type: "FeatureCollection",
+        features: [
+            {
+                type: "Feature",
+                geometry: {
+                    type: "Point",
+                    coordinates: [(west + east) / 2, (north + south) / 2]
+                },
+                properties: { name }
+            }
+        ]
+    };
+
     map.addSource("pointcloud-lengths", { type: "geojson", data: lengthLabels });
+    map.addSource("pointcloud-labels", { type: "geojson", data: centerLabel });
 
     map.addLayer({
         id: "pointcloud-lengths",
@@ -232,5 +247,21 @@ function drawBoundingBox(map, bbox, name) {
             "text-rotate": ["get", "rotate"]
         },
         paint: { "text-color": "#ffffff" }
+    });
+
+    map.addLayer({
+        id: "pointcloud-labels",
+        type: "symbol",
+        source: "pointcloud-labels",
+        layout: {
+            "text-field": ["get", "name"],
+            "text-size": 14,
+            "text-anchor": "center"
+        },
+        paint: {
+            "text-color": "#ffffff",
+            "text-halo-color": "rgba(0,0,0,0.6)",
+            "text-halo-width": 1.2
+        }
     });
 }

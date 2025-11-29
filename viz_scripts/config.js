@@ -46,7 +46,16 @@ export function getEnvlinkConfig() {
 export function buildApiUrl(path) {
     const { apiBaseUrl } = getEnvlinkConfig();
     const normalized = normalizePath(path);
-    return joinBase(apiBaseUrl, normalized);
+    if (!apiBaseUrl) {
+        return normalized;
+    }
+    try {
+        const base = apiBaseUrl.endsWith("/") ? apiBaseUrl : `${apiBaseUrl}/`;
+        const url = new URL(normalized.replace(/^\//, ""), base);
+        return url.toString();
+    } catch {
+        return joinBase(apiBaseUrl, normalized);
+    }
 }
 
 export function buildAssetUrl(path) {
