@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="author" content="Tianming Liu">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Envlink Fusion Viewer</title>
+
+    <!-- ===== Potree Styles ===== -->
+    <link rel="stylesheet" type="text/css" href="../build/potree/potree.css">
+    <link rel="stylesheet" type="text/css" href="../libs/jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" type="text/css" href="../libs/openlayers3/ol.css">
+    <link rel="stylesheet" type="text/css" href="../libs/spectrum/spectrum.css">
+    <link rel="stylesheet" type="text/css" href="../libs/jstree/themes/mixed/style.css">
+    <link rel="stylesheet" type="text/css" href="../build/potree/potree_custom.css">
+
+    <!-- D3.js Library -->
+    <script src="../libs/d3/d3.min.js"></script>
+
+    <!-- ===== Cesium Styles ===== -->
+    <link rel="stylesheet" type="text/css" href="../libs/Cesium/Widgets/widgets.css">
+
+    <!-- Mapbox GL JS -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.16.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.16.0/mapbox-gl.js"></script>
+
+    <!-- Turf.js for spatial analysis -->
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+
+    <!-- ===== Font Styles ===== -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- ===== Favicon ===== -->
+    <link rel="icon" type="image/png" href="../resources/icons/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="../resources/icons/favicon.svg" />
+    <link rel="shortcut icon" href="../resources/icons/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../resources/icons/apple-touch-icon.png" />
+    <link rel="manifest" href="../resources/icons/site.webmanifest" />
+</head>
+
+<body>
+    <!-- ===== Sidebar ===== -->
+    <div id="sidebar_left">
+
+        <!-- MODULE 1: DATA SELECTOR -->
+        <h3>Data Selector</h3>
+        <select id="pointcloudSelector"></select>
+
+        <!-- MODULE 2: VIEW CONTROLLER -->
+        <h3>View Controller</h3>
+        <div class="view-controller-container">
+            <!-- Grid Item 1: Rotation -->
+            <div class="controller-item">
+                <span class="row-label">Rotation</span>
+                <label class="switch">
+                    <input type="checkbox" id="orbitToggle" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <!-- Grid Item 2: Material -->
+            <div class="controller-item">
+                <span class="row-label">Material</span>
+                <select id="displayModeSelect">
+                    <option value="rgb">RGB</option>
+                    <option value="classification">Classification</option>
+                    <option value="elevation">Elevation</option>
+                </select>
+            </div>
+
+            <!-- Grid Item 3: Height -->
+            <div class="controller-item">
+                <span class="row-label">Height</span>
+                <div class="height-buttons">
+                    <button id="heightDown" class="height-btn">↓</button>
+                    <button id="heightUp" class="height-btn">↑</button>
+                </div>
+            </div>
+
+            <!-- Grid Item 4: TrueTone -->
+            <div class="controller-item">
+                <span class="row-label">TrueTone</span>
+                <input type="range" id="baseLayerSlider" min="0" max="1" step="0.01" value="0" class="range-slider">
+            </div>
+        </div>
+
+        <!-- MODULE 3: SENSOR SESSIONS -->
+        <h3>Sensor Sessions</h3>
+        <div id="sessionControls">
+            <!-- Part 1: Session IDs List -->
+            <div id="sessionList">
+                Loading Sensor Data...
+            </div>
+
+            <!-- Part 2: Sensor Data Panel (Hidden by default) -->
+            <div id="sensorDataPanel">
+                <h4>
+                    Sensor Data Point
+                    <button class="sensor-close-btn" onclick="hideSensorDataPanel()">×</button>
+                </h4>
+                <div id="sensorDataContent">
+                    <!-- Content will be dynamically populated -->
+                </div>
+            </div>
+        </div>
+
+        <!-- MODULE 4: MAP -->
+        <div id="map"></div>
+    </div>
+
+    <!-- ===== Main Viewer ===== -->
+    <div class="potree_container">
+        <div id="potree_render_area">
+            <!-- Cesium Container -->
+            <div id="cesiumContainer"></div>
+
+            <!-- Sensor Images Panel -->
+            <div id="sensorImagesPanel" class="sensor-images-panel">
+                <button class="sensor-images-close-btn" onclick="hideSensorImages()">×</button>
+                <div class="sensor-images-container">
+                    <!-- Camera 2 -->
+                    <div class="sensor-image-item">
+                        <div class="image-compare-container">
+                            <div class="image-wrapper">
+                                <img id="sensorImg2" class="image-original" src="" alt="Camera 2">
+                                <img id="sensorImg2Seg" class="image-segmented" src="" alt="Camera 2 Segmented">
+                                <div class="image-divider" data-camera="2"></div>
+                                <input type="range" class="image-slider" data-camera="2" min="0" max="100" value="50"
+                                    step="0.1">
+                            </div>
+                        </div>
+                        <span class="sensor-image-label">Left</span>
+                    </div>
+
+                    <!-- Camera 0 -->
+                    <div class="sensor-image-item">
+                        <div class="image-compare-container">
+                            <div class="image-wrapper">
+                                <img id="sensorImg0" class="image-original" src="" alt="Camera 0">
+                                <img id="sensorImg0Seg" class="image-segmented" src="" alt="Camera 0 Segmented">
+                                <div class="image-divider" data-camera="0"></div>
+                                <input type="range" class="image-slider" data-camera="0" min="0" max="100" value="50"
+                                    step="0.1">
+                            </div>
+                        </div>
+                        <span class="sensor-image-label">Middle</span>
+                    </div>
+
+                    <!-- Camera 1 -->
+                    <div class="sensor-image-item">
+                        <div class="image-compare-container">
+                            <div class="image-wrapper">
+                                <img id="sensorImg1" class="image-original" src="" alt="Camera 1">
+                                <img id="sensorImg1Seg" class="image-segmented" src="" alt="Camera 1 Segmented">
+                                <div class="image-divider" data-camera="1"></div>
+                            </div>
+                        </div>
+                        <span class="sensor-image-label">Right</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="potree_sidebar_container"></div>
+    </div>
+
+    <!-- Profile Window -->
+    <div class="profile-window">
+        <div class="profile-content">
+            <div class="profile-main">
+                <div class="profile-toolbar">
+                    <!-- Toolbar content -->
+                </div>
+                <div class="profile-draw-container">
+                    <!-- Canvas content -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== JS Libraries ===== -->
+    <script src="../libs/jquery/jquery-3.1.1.min.js"></script>
+    <script src="../libs/spectrum/spectrum.js"></script>
+    <script src="../libs/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../libs/other/BinaryHeap.js"></script>
+    <script src="../libs/tween/tween.min.js"></script>
+    <script src="../libs/d3/d3.js"></script>
+    <script src="../libs/proj4/proj4.js"></script>
+    <script src="../libs/openlayers3/ol.js"></script>
+    <script src="../libs/i18next/i18next.js"></script>
+    <script src="../libs/jstree/jstree.js"></script>
+    <script src="../build/potree/potree.js"></script>
+    <script src="../libs/plasio/js/laslaz.js"></script>
+
+    <!-- 加载 Cesium 1.135 -->
+    <script src="../libs/Cesium/Cesium.js"></script>
+    <script>
+        window.CESIUM_BASE_URL = '../libs/Cesium/';
+    </script>
+
+    <!-- ===== Custom viz_scripts ===== -->
+    <script src="../config/env.config.js"></script>
+    <script type="module">
+        import * as THREE from "../libs/three.js/build/three.module.js";
+        import "../viz_scripts/xhrAuthInterceptor.js";
+        import { initDataLoader } from "../viz_scripts/dataLoader.js";
+        import { setupViewerView } from "../viz_scripts/viewerController.js";
+        import { createRandomProfileFromGeometry } from "../viz_scripts/elevationProfileBuilder.js";
+        import { addSensorPointsToScene } from "../viz_scripts/sensorVisualizer3D.js";
+
+        // Cesium底图模块
+        import {
+            initCesiumUnderlay,
+            syncPotreeToCesium
+        } from "../viz_scripts/cesiumUnderlay.js";
+
+        import { initMapbox, updateMapLocation } from "../viz_scripts/mapboxMapping.js";
+
+        // === Initialize Potree Viewer ===
+        window.viewer = new Potree.Viewer(document.getElementById("potree_render_area"), {
+            useDefaultRenderLoop: false
+        });
+
+        viewer.setBackground(null);
+        viewer.setPointBudget(8_000_000);
+        viewer.setFOV(45);
+        viewer.useHQ = true;
+        viewer.setDescription("Multi-Source Human Habitat Environment Data Viewer");
+
+        viewer.renderer.autoClear = false;
+        viewer.renderer.autoClearDepth = false;
+        console.log("Potree renderer configured for depth integration");
+
+        // === Load GUI ===
+        viewer.loadGUI().then(() => {
+            if (!viewer.profileWindowController && viewer.profileWindow) {
+                try {
+                    viewer.profileWindowController = new Potree.ProfileWindowController(
+                        viewer.profileWindow,
+                        viewer
+                    );
+                    console.log('ProfileWindowController initialized');
+                } catch (err) {
+                    console.warn("Failed to initialize ProfileWindowController:", err);
+                }
+            }
+            if (viewer.profileWindow?.show) viewer.profileWindow.show();
+
+            const profileWin = viewer.profileWindow;
+            if (!profileWin) return;
+
+            const watcher = setInterval(() => {
+                if (profileWin.viewerPickSphere && profileWin.pickSphere) {
+                    const sameMaterial = new THREE.MeshBasicMaterial({
+                        color: 0x851010,
+                        depthTest: false,
+                        depthWrite: false
+                    });
+
+                    profileWin.viewerPickSphere.material = sameMaterial;
+                    profileWin.viewerPickSphere.material.needsUpdate = true;
+
+                    profileWin.pickSphere.material = sameMaterial;
+                    profileWin.pickSphere.material.needsUpdate = true;
+
+                    console.log("Hover spheres unified with endpoint marker material");
+                    clearInterval(watcher);
+                }
+            }, 400);
+        });
+
+        // === Initialize Cesium Underlay ===
+        try {
+            window.cesiumViewer = initCesiumUnderlay("cesiumContainer");
+            console.log("Cesium initialized");
+        } catch (error) {
+            console.error('Cesium initialization error:', error);
+        }
+
+        // === Initialize Mapbox ===
+        try {
+            window.mapboxMap = initMapbox();
+            console.log("Mapbox initialized");
+        } catch (error) {
+            console.warn("Mapbox initialization failed:", error);
+        }
+
+        // === Initialize Data Loader ===
+        console.log("Initializing data loader...");
+        initDataLoader(viewer);
+
+        // === Point Cloud Loaded Event ===
+        document.addEventListener("pointcloudLoaded", async (e) => {
+            const key = e.detail.key;
+            console.log(`[Main] Point cloud loaded event received: ${key}`);
+
+            // Update Mapbox
+            if (window.mapboxMap) {
+                try {
+                    await updateMapLocation(window.mapboxMap, key);
+                    console.log("[Main] ✅ Mapbox updated");
+                } catch (error) {
+                    console.error("[Main] ❌ Mapbox update error:", error);
+                }
+            }
+
+            // Add Sensor Points
+            try {
+                await addSensorPointsToScene(viewer, key);
+                console.log("[Main] ✅ Sensor points added");
+            } catch (error) {
+                console.error("[Main] ❌ Sensor points error:", error);
+            }
+        });
+
+        // === Render Loop: Sync Potree and Cesium ===
+        function renderLoop(timestamp) {
+            requestAnimationFrame(renderLoop);
+
+            syncPotreeToCesium(viewer);
+
+            if (window.cesiumViewer) {
+                cesiumViewer.render();
+            }
+
+            viewer.renderer.clear(true, false, false);
+
+            viewer.update(viewer.clock.getDelta(), timestamp);
+            viewer.render();
+        }
+
+        // Start the render loop
+        requestAnimationFrame(renderLoop);
+        console.log("Render loop started");
+
+        // === Controller Event Listeners ===
+        document.addEventListener("DOMContentLoaded", () => {
+            // Orbit Toggle
+            const toggle = document.getElementById("orbitToggle");
+            if (toggle) {
+                toggle.addEventListener("change", (e) => {
+                    const enabled = e.target.checked;
+                    if (window.toggleOrbit) window.toggleOrbit(enabled);
+                    console.log('Orbit mode:', enabled ? 'enabled' : 'disabled');
+                    if (window.viewer && window.viewer.render) {
+                        window.viewer.render();
+                    }
+
+                    if (window.cesiumViewer) {
+                        const baseLayer = window.cesiumViewer.imageryLayers.get(0);
+                        if (baseLayer) {
+                            baseLayer.show = true; // 始终显示底图
+                            baseLayer.alpha = enabled ? 0.6 : 0.3; // orbit 时更亮
+                        }
+                    }
+                });
+            }
+
+            // Display Mode Select
+            const displaySelect = document.getElementById("displayModeSelect");
+            if (displaySelect) {
+                displaySelect.addEventListener("change", (e) => {
+                    const mode = e.target.value;
+                    setPointCloudDisplayMode(mode);
+                });
+            }
+
+            // Height Control Buttons
+            const heightUpBtn = document.getElementById("heightUp");
+            const heightDownBtn = document.getElementById("heightDown");
+
+            if (heightUpBtn && heightDownBtn) {
+                // Import adjustHeight function
+                import("../viz_scripts/cesiumUnderlay.js").then(module => {
+                    const { adjustHeight } = module;
+
+                    heightUpBtn.addEventListener("click", () => {
+                        adjustHeight(20);
+                        if (window.viewer && window.viewer.render) {
+                            window.viewer.render();
+                        }
+
+                    });
+
+                    heightDownBtn.addEventListener("click", () => {
+                        adjustHeight(-20);
+                        if (window.viewer && window.viewer.render) {
+                            window.viewer.render();
+                        }
+
+                    });
+                });
+            }
+
+            // === Base Layer Slider ===
+            const baseLayerSlider = document.getElementById("baseLayerSlider");
+            if (baseLayerSlider) {
+                baseLayerSlider.addEventListener("input", (e) => {
+                    const t = parseFloat(e.target.value);
+                    if (!window.cesiumViewer) return;
+
+                    const imageryLayers = window.cesiumViewer.imageryLayers;
+                    if (imageryLayers.length > 0) {
+                        const baseLayer = imageryLayers.get(0);
+
+                        baseLayer.saturation = 0 + t * (0.8 - 0);
+                        baseLayer.alpha = 0.3 + t * (1.0 - 0.3);
+                        baseLayer.brightness = 0.4 + t * (0.8 - 0.4);
+                    }
+                    if (window.viewer && window.viewer.render) {
+                        window.viewer.render();
+                    }
+                });
+            }
+        });
+
+        // === Set Point Cloud Display Mode ===
+        function setPointCloudDisplayMode(mode) {
+            const pointclouds = viewer.scene.pointclouds;
+
+            if (!pointclouds || pointclouds.length === 0) {
+                console.warn("⚠️ No point clouds in scene");
+                return;
+            }
+
+            pointclouds.forEach(pc => {
+                switch (mode) {
+                    case 'rgb':
+                        pc.material.activeAttributeName = "rgba";
+                        console.log("Display Mode: RGB");
+                        break;
+
+                    case 'classification':
+                        pc.material.activeAttributeName = "classification";
+                        console.log("Display Mode: Classification");
+                        break;
+
+                    case 'elevation':
+                        pc.material.activeAttributeName = "elevation";
+                        pc.material.gradient = Potree.Gradients.TURBO;
+
+                        pc.updateMatrixWorld(true);
+                        const worldBB = pc.getWorldBoundingBox
+                            ? pc.getWorldBoundingBox(new THREE.Box3())
+                            : pc.boundingBox.clone().applyMatrix4(pc.matrixWorld);
+
+                        pc.material.elevationRange = [worldBB.min.z, worldBB.max.z];
+                        console.log(`Elevation: ${worldBB.min.z.toFixed(2)}-${worldBB.max.z.toFixed(2)}m`);
+                        break;
+                }
+
+                // ✅ 确保材质立即更新
+                pc.material.needsUpdate = true;
+                pc.material.pointColorType = Potree.PointColorType[mode.toUpperCase()] || Potree.PointColorType.RGB;
+            });
+
+            if (viewer && viewer.render) {
+                viewer.scene.dispatchEvent({ type: "material_changed" });
+                viewer.render();
+            } else {
+                console.warn("⚠️ viewer.render() not available");
+            }
+
+            if (viewer) viewer.requestRender();
+        }
+
+        window.setPointCloudDisplayMode = setPointCloudDisplayMode;
+
+        // === Global Debug Function ===
+        window.debugApp = () => {
+            console.group('🔍 Application Debug Info');
+            console.log('Cesium Version:', Cesium.VERSION);
+            console.log('Potree Version:', Potree.version);
+            console.log('Cesium Viewer:', !!window.cesiumViewer);
+            console.log('Potree Viewer:', !!window.viewer);
+            console.log('Mapbox Map:', !!window.mapboxMap);
+            console.log('Point Clouds:', viewer.scene.pointclouds.length);
+            console.groupEnd();
+        };
+    </script>
+    <script type="module" src="../viz_scripts/depthReader.js"></script>
+
+
+</body>
+
+</html>

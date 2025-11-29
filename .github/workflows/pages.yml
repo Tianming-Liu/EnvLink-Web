@@ -1,0 +1,42 @@
+name: Deploy EnvLink Web
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate env.config.js
+        run: |
+          cat <<'CONFIG' > config/env.config.js
+          window.EnvlinkConfig = {
+            apiBaseUrl: "${{ secrets.ENV_API_BASE }}",
+            assetBaseUrl: "${{ secrets.ENV_ASSET_BASE }}",
+            mapboxToken: "${{ secrets.ENV_MAPBOX_TOKEN }}",
+            cesiumIonToken: "${{ secrets.ENV_CESIUM_TOKEN }}",
+            apiKey: "${{ secrets.ENV_API_KEY }}"
+          };
+          CONFIG
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

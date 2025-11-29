@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>EnvLink</title>
+  <link href="./style.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div aria-hidden="true" class="hud">
+    <div class="hud-left" id="hudLeft">
+      <div class="hud-left__label">
+        <span>EnvLink</span>
+        <span>Powered by HSL</span>
+      </div>
+    </div>
+    <div class="hud-right" id="hudRight">
+      <div class="hud-right__label">
+        <span>Tsinghua University</span>
+        <span>School of Architecture</span>
+      </div>
+      <img alt="Tsinghua University logo" src="./src/img/Tsinghua_University_Logo.png" />
+    </div>
+  </div>
+  <div id="app">
+    <div id="status">Loading...</div>
+  </div>
+  <div class="scroll-hint" id="scrollHint">
+    Scroll
+    <span class="scroll-hint__arrow"></span>
+  </div>
+  <div class="batch-legend" id="batchLegend">
+    <div class="batch-legend__title">Batch</div>
+    <div class="batch-legend__hint">Year village was admitted to the national list</div>
+    <div class="batch-legend__items" id="legendItems"></div>
+  </div>
+  <div class="intro-overlay" id="introOverlay">
+    <div class="intro-card">
+      <span class="intro-card__label">MAKE DATA-ABSENT HABITATS SENSIBLE</span>
+      <h1 class="intro-card__title">Portable Multi-Modal Sensing for Places Data Rarely Reaches</h1>
+    </div>
+    <div class="intro-card intro-card--secondary">
+      <p>
+        8,155 villages listed as Chinese 'National Traditional Villages' constitute a unique dataset embodying the wisdom of human
+        habitation.
+      </p>
+    </div>
+  </div>
+  <div aria-live="polite" class="session-overlay is-hidden" id="sessionOverlay">
+    <div class="session-overlay__timeline" id="sessionTimeline"></div>
+    <div class="session-overlay__cards">
+      <button class="session-overlay__scroll session-overlay__scroll--up" type="button" aria-label="Scroll up"></button>
+      <div class="session-overlay__cards-list" data-column="cards"></div>
+      <button class="session-overlay__scroll session-overlay__scroll--down" type="button"
+        aria-label="Scroll down"></button>
+    </div>
+  </div>
+  <div aria-live="polite" class="session-totals" id="sessionTotals">
+    <div class="session-totals__grid">
+      <div class="session-totals__metric">
+        <span>habitats sensed</span>
+        <strong data-total="villages">0</strong>
+      </div>
+      <div class="session-totals__metric">
+        <span>Data points</span>
+        <strong data-total="datapoints">0</strong>
+      </div>
+      <div class="session-totals__metric">
+        <span>Images Captured</span>
+        <strong data-total="images">0</strong>
+      </div>
+      <div class="session-totals__metric">
+        <span>Trajectory length</span>
+        <strong data-total="trajectory">0 m</strong>
+      </div>
+    </div>
+  </div>
+  <main aria-label="Scroll-triggered story" class="story is-loading">
+    <section class="story-block">
+      <div class="story-card">
+        <span class="story-line" data-story-item>
+          Portable multi-modal environmental sensing for <span class="accent">underrepresented human habitats</span>.
+        </span>
+        <span class="story-line" data-story-item>
+          We follow human habitats overlooked, or poorly captured by existing data platforms.
+        </span>
+      </div>
+    </section>
+    <section class="story-block">
+      <div class="story-card">
+        <span class="story-line" data-story-item>
+          Global monitoring networks cluster around cities, and places with reliable infrastructure.
+        </span>
+        <span class="story-line" data-story-item>
+          Dense dashboards from these nodes <span class="accent">never represent the totality</span> of
+          human–environment interaction.
+        </span>
+      </div>
+    </section>
+    <section class="story-block">
+      <div class="story-card">
+        <span class="story-line" data-story-item>
+          Villages, mountain valleys, riverbank settlements, and informal edges rarely host instruments.
+        </span>
+        <span class="story-line" data-story-item>
+          Yet they hold generations of adaptation knowledge dismissed as <span class="accent">“blank spots”</span>
+        </span>
+        <span class="story-line" data-story-item>
+          These are not voids—they are <span class="accent">archived habitats</span> waiting to be recorded again.
+        </span>
+      </div>
+    </section>
+    <section class="story-block story-block--sensors" id="sensorShowcase">
+      <div class="sensor-stage">
+        <div class="sensor-stage__device">
+          <img alt="EnvLink sensing kit" loading="lazy" src="./src/img/sensor_line.jpg" />
+          <div class="sensor-stage__nodes" data-sensor-nodes></div>
+        </div>
+        <div class="sensor-stage__panel">
+          <div class="sensor-panel__header">
+            <p class="sensor-panel__eyebrow">Sensor architecture</p>
+            <h3>EnvLink Wearable Device</h3>
+            <p>Five synchronized sensing modules translate remote habitats into multi-modal evidence.</p>
+          </div>
+          <div class="sensor-panel__rows" data-sensor-rows></div>
+        </div>
+      </div>
+    </section>
+    <section class="story-block">
+      <div class="story-card">
+        <span class="story-line" data-story-item>
+          What we lose is more than data; it is the accumulated wisdom of dwelling with landscapes.
+        </span>
+        <span class="story-line" data-story-item>
+          We need sensing that can walk into real habitats and stay with people, not just towers.
+        </span>
+        <span class="story-line" data-story-item>
+          Our wearable multi-modal system fuses time, space, and physiology to bring edge communities back into the map.
+        </span>
+      </div>
+    </section>
+  </main>
+  <script src="https://unpkg.com/deck.gl@8.9.36/dist.min.js"></script>
+  <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+  <script type="module">
+    import { initApp } from "./scripts/mapInit.js";
+    import { initSensorShowcase } from "./scripts/sensorShowcase.js";
+    initApp();
+    initSensorShowcase();
+  </script>
+</body>
+
+</html>

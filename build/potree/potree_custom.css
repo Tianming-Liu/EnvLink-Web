@@ -1,0 +1,1063 @@
+/* ================================================
+   TABLE OF CONTENTS
+   1. Base Styles
+   2. Main Container Layout
+   3. Sidebar Left (统一控制面板)
+   4. Profile Window (半透明悬浮)
+   5. Utility Classes
+   ================================================ */
+
+
+/* ================================================
+   1. BASE STYLES
+   ================================================ */
+
+html body {
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  background-color: #000000 !important;
+  font-family: "Roboto", sans-serif !important;
+}
+
+
+/* ================================================
+   2. MAIN CONTAINER LAYOUT
+   ================================================ */
+
+/* 主渲染容器 - 右侧75%，撑满整个高度 */
+html body .potree_container {
+  position: absolute !important;
+  right: 0 !important;
+  top: 0 !important;
+  width: 75% !important;
+  height: 100% !important;
+  background-color: #000000 !important;
+  border: #1a1a1a 1px solid !important;
+  overflow: hidden !important;
+  z-index: 1 !important;
+  box-sizing: border-box !important;
+  border-radius: 12px !important;
+  background-clip: padding-box !important;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  isolation: isolate;
+}
+
+html body #potree_render_area {
+  position: absolute !important;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: inherit !important; 
+  overflow: hidden !important;
+  background-color: #000000 !important;
+  z-index: 1;
+}
+
+/* Cesium */
+#cesiumContainer {
+  position: absolute !important;
+  inset: 0;
+  z-index: 0;
+  background: #000000;
+  border-radius: inherit !important;
+  overflow: hidden !important;
+}
+
+.potree_container canvas:focus {
+  outline: none !important;
+}
+
+/* ================================================
+   SENSOR IMAGES PANEL（左下角）
+   响应式 + 保持16:9比例 + 完整滑块支持
+   ================================================ */
+
+.sensor-images-panel {
+  position: absolute;
+  bottom: calc(30% + 20px);
+  left: 20px;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 14px 14px 9px 12px;
+  max-width: calc(100% - 40px);
+  z-index: 100;
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.sensor-images-panel.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* 关闭按钮（仅显示叉号） */
+.sensor-images-close-btn {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background: none; /* ❌ 去掉背景 */
+  border: none;     /* ❌ 去掉边框 */
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 20px;
+  cursor: pointer;
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s, transform 0.2s;
+  z-index: 10;
+}
+
+/* 悬停时略微放大并变亮 */
+.sensor-images-close-btn:hover {
+  color: rgba(255, 255, 255, 1);
+  transform: scale(1.1);
+}
+
+/* 点击时轻微缩小反馈 */
+.sensor-images-close-btn:active {
+  transform: scale(0.95);
+}
+
+/* 图片容器布局 */
+.sensor-images-container {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+}
+
+.sensor-image-item {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+/* ===============================
+   图像对比容器（4:3 保持比例）
+   =============================== */
+.image-compare-container {
+  position: relative;
+  width: 100%;
+}
+
+/* ===============================
+   图像包装容器
+   =============================== */
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  min-height: 120px;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.3);
+  user-select: none;
+  scrollbar-width: none;       /* Firefox */
+  -ms-overflow-style: none;    /* IE/Edge */
+}
+.image-wrapper::-webkit-scrollbar {
+  display: none; /* Chrome / Safari */
+}
+
+.image-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4); /* 可以改成你想要的遮挡颜色 */
+  z-index: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* 图片加载完成后隐藏遮罩层（需配合JS加 .loaded 类） */
+.image-wrapper.loaded::before {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ===============================
+   原图（底层）
+   =============================== */
+.image-original {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  z-index: 1;
+}
+
+/* ===============================
+   分割图（上层）
+   =============================== */
+.image-segmented {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  clip-path: inset(0 50% 0 0);
+  z-index: 2;
+}
+
+/* ===============================
+   分割线
+   =============================== */
+.image-divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1.5px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.6),
+              0 0 8px rgba(255, 255, 255, 0.3);
+  cursor: ew-resize;
+  z-index: 3;
+  transform: translateX(-1.5px);
+}
+
+/* ===============================
+   图片标签
+   =============================== */
+.sensor-image-label {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+
+/* ===============================
+   图片加载状态
+   =============================== */
+.image-original[src=""],
+.image-original:not([src]),
+.image-segmented[src=""],
+.image-segmented:not([src]) {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ===============================
+   图片加载失败
+   =============================== */
+.image-original.error,
+.image-segmented.error {
+  background: rgba(255, 0, 0, 0.1);
+  border-color: rgba(255, 0, 0, 0.3);
+}
+
+/* ================================================
+   3. SIDEBAR LEFT (统一控制面板)
+   ================================================ */
+
+#sidebar_left {
+  position: relative;
+  left: 0;
+  top: 0;
+  width: 25%;
+  height: 100%;
+  background-color: #000000;
+  color: #ffffff;
+  border: none !important;
+  box-sizing: border-box;
+  padding: 15px;
+  font-family: "Roboto", sans-serif;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Section Headers */
+#sidebar_left h3 {
+  /* uppercase */
+  text-transform: uppercase;
+  font: roboto, sans-serif;
+  font-size: 12px;
+  color: #9d9d9d;
+  font-weight: 700;
+  margin-bottom: 12px;
+  margin-top: 12px;
+  margin-left: 12px;
+}
+
+#sidebar_left h3:first-of-type {
+  margin-top: 0;
+}
+
+/* ================================================
+   MODULE 1: DATA SELECTOR
+   ================================================ */
+
+.module-container {
+  background: #000000;
+  border: 1px solid #1a1a1a;
+  border-radius: 8px;
+  padding: 6px;
+}
+
+#pointcloudSelector {
+  width: 100%;
+  padding: 6px 12px 6px 8px;
+  border-radius: 4px;
+  background-color: #0a0a0a;
+  color: #ffffff;
+  border: 1px solid #1a1a1a;
+  font-size: 11px;
+  outline: none;
+  font-family: "Roboto", sans-serif;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+#pointcloudSelector:hover {
+  background-color: #0a0a0a;
+  border-color: #444444;
+}
+
+#pointcloudSelector:focus {
+  border-color: #1a1a1a;
+}
+
+/* ================================================
+   MODULE 2: VIEW CONTROLLER
+   ================================================ */
+
+.view-controller-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 8px 25px;
+  background: #000000;
+  border: 1px solid #1a1a1a;
+  border-radius: 8px;
+  padding: 12px;
+  min-width: 0;
+}
+
+.controller-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-width: 0;
+}
+
+.row-label {
+  font-size: 10px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  white-space: nowrap;
+  width: 50px;
+  flex-shrink: 0;
+  text-align: left;
+}
+
+/* Toggle Switch */
+.switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-width: 60px;
+  width: 75px;
+  max-width: 75px;
+  height: 24px;
+  flex-shrink: 1;
+  justify-content: space-between;
+}
+
+.switch input {
+  display: none;
+}
+
+/* OFF text on the left */
+.switch::before {
+  content: "OFF";
+  font-size: 9px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+  transition: color 0.3s;
+  letter-spacing: 0.5px;
+  width: 18px;
+  text-align: center;
+  order: 1;
+}
+
+/* ON text on the right */
+.switch::after {
+  content: "ON";
+  font-size: 9px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.3);
+  transition: color 0.3s;
+  letter-spacing: 0.5px;
+  width: 16px;
+  text-align: center;
+  order: 3;
+}
+
+/* Dim OFF when checked */
+.switch:has(input:checked)::before {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* Highlight ON when checked */
+.switch:has(input:checked)::after {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.slider {
+  order: 2;
+  position: relative;
+  cursor: pointer;
+  width: 36px;
+  height: 18px;
+  background-color: #1a1a1a;
+  border: 1px solid #252525;
+  transition: 0.3s;
+  border-radius: 18px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+  flex-shrink: 0;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 2px;
+  bottom: 2px;
+  background-color: rgba(255, 255, 255, 0.9);
+  transition: 0.3s;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.switch input:checked+.slider {
+  background-color: #1a1a1a;
+  border: 1px solid #444444;
+}
+
+.switch input:checked+.slider:before {
+  transform: translateX(16px);
+  background-color: rgba(255, 255, 255, 1);
+}
+
+/* Select Dropdown in Controller */
+.controller-item select {
+  min-width: 60px;
+  width: 75px;
+  max-width: 75px;
+  height: 20px;
+  background: #1a1a1a;
+  color: rgba(255, 255, 255, 0.95);
+  border: 1px solid #444444;
+  border-radius: 4px;
+  font-size: 11px;
+  font-family: "Roboto", sans-serif;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s;
+  flex-shrink: 1;
+  box-sizing: border-box;
+}
+
+.controller-item select:hover {
+  border-color: #666666;
+  background: #252525;
+}
+
+.controller-item select:focus {
+  border-color: #888888;
+  background: #252525;
+}
+
+/* Height Control Buttons */
+.height-buttons {
+  display: flex;
+  gap: 8px;
+  min-width: 60px;
+  width: 75px;
+  max-width: 75px;
+  flex-shrink: 1;
+}
+
+.height-btn {
+  flex: 1;
+  height: 20px;
+  padding: 0;
+  background: #1a1a1a;
+  color: rgba(255, 255, 255, 0.95);
+  border: 1px solid #252525;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: "Roboto", sans-serif;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.height-btn:hover {
+  background: #252525;
+  border-color: #666666;
+}
+
+.height-btn:active {
+  background: #0a0a0a;
+  transform: scale(0.95);
+}
+
+/* TrueTone Slider */
+.range-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  min-width: 60px;
+  width: 75px;
+  max-width: 75px;
+  height: 4px;
+  background: #1a1a1a;
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 1;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.range-slider:hover::-webkit-slider-thumb {
+  background: #ffffff;
+  transform: scale(1.15);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+.range-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+}
+
+/* ================================================
+   MODULE 3: SENSOR SESSIONS
+   ================================================ */
+
+#sessionControls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #000000;
+  border: 1px solid #1a1a1a;
+  border-radius: 8px;
+  padding: 6px;
+  position: relative;
+  /* 🔧 添加相对定位 */
+}
+
+/* Session List */
+#sessionList {
+  font-size: 10px;
+  color: #9d9d9d;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 4px;
+  position: relative;
+  /* 🔧 添加相对定位 */
+  z-index: 10;
+  /* 🔧 确保在上层 */
+}
+
+.session-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 2px 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 4px;
+  transition: background 0.2s, max-height 0.3s, opacity 0.3s, padding 0.3s;
+}
+
+.session-toggle:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* 第一行（可点击展开） */
+.session-toggle-first {
+  cursor: pointer;
+  user-select: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  position: relative;
+  /* 🔧 相对定位 */
+  z-index: 12;
+  /* 🔧 最高层 */
+}
+
+/* 🔧 可折叠行容器 */
+.session-list-dropdown {
+  position: absolute;
+  /* 🔧 绝对定位，脱离文档流 */
+  top: 100%;
+  /* 🔧 从第一行下方开始 */
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.85);
+  /* 🔧 半透明背景 */
+  backdrop-filter: blur(10px);
+  /* 🔧 毛玻璃效果 */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  padding: 4px;
+  max-height: 200px;
+  /* 🔧 最大高度 */
+  overflow-y: auto;
+  z-index: 11;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  /* 🔧 阴影 */
+  transition: opacity 0.3s, transform 0.3s;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.session-list-dropdown.collapsed {
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  /* 🔧 折叠时不可交互 */
+  max-height: 0;
+  padding: 0 4px;
+  overflow: hidden;
+}
+
+/* 可折叠的行 */
+.session-toggle-collapsible {
+  max-height: 40px;
+  opacity: 1;
+  overflow: hidden;
+  transition: none;
+  /* 🔧 移除过渡，由容器控制 */
+}
+
+/* 折叠图标 */
+.session-collapse-icon {
+  margin-left: auto;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.6);
+  transition: color 0.2s;
+  flex-shrink: 0;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.session-collapse-icon:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.toggleLabel {
+  font-size: 11px;
+  color: #cccccc;
+  flex-grow: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Switch 样式确保不会被点击事件影响 */
+.switch {
+  pointer-events: auto;
+  z-index: 1;
+}
+
+/* Sensor Data Panel (Sidebar内部) */
+#sensorDataPanel {
+  background: rgba(30, 30, 30, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  margin-top: 0;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.3s ease, max-height 0.3s ease, margin-top 0.3s ease;
+}
+
+#sensorDataPanel.visible {
+  opacity: 1;
+  max-height: 400px;
+}
+
+#sensorDataPanel h4 {
+  margin: 6px 0 6px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #9d9d9d;
+}
+
+.sensor-data-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 11px;
+}
+
+.sensor-data-label {
+  color: #999999;
+}
+
+.sensor-data-value {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.sensor-readings-grid {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 10px;
+  border-radius: 4px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+  margin-top: 8px;
+}
+
+.sensor-reading-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sensor-reading-label {
+  font-size: 10px;
+  color: #888888;
+  text-transform: uppercase;
+}
+
+.sensor-reading-value {
+  font-size: 12px;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.sensor-close-btn {
+  float: right;
+  background: transparent;
+  border: none;
+  color: #999999;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 3px;
+  transition: all 0.2s;
+  margin-top: -2px;
+}
+
+.sensor-close-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+/* ================================================
+   MODULE 4: MAPBOX MAP
+   ================================================ */
+
+#map {
+  position: relative !important;
+  width: 100% !important;
+  height: calc(30vh - 20px) !important;
+  margin-top: auto !important;
+  background: #000000 !important;
+  overflow: hidden !important;
+  border-radius: 8px !important;
+  border: 1px solid #1a1a1a !important;
+  flex-shrink: 0;
+}
+
+/* ================================================
+   4. PROFILE WINDOW
+   ================================================ */
+
+/* Main Container */
+.profile-window {
+  position: absolute !important;
+  right: 2px !important;
+  bottom: 0 !important;
+  width: calc(75% - 2px) !important;
+  height: 30% !important;
+
+  background: rgba(20, 20, 20, 0.3) !important;
+  border-radius: 0 0 12px 12px !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  box-shadow:
+    inset 0 0 10px rgba(180, 180, 180, 0.08),
+    0 8px 12px -4px rgba(160, 160, 160, 0.15);
+
+  z-index: 10 !important;
+  display: flex !important;
+  box-sizing: border-box;
+  pointer-events: auto;
+}
+
+.profile-content {
+  position: relative !important;
+  width: 100% !important;
+  height: 100% !important;
+  box-sizing: border-box !important;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-main {
+  flex-grow: 1;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0.35) !important;
+  border-radius: 8px;
+  box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.08);
+}
+
+/* Toolbar */
+.profile-toolbar {
+  width: 100%;
+  padding: 4px 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+  font-size: 12px;
+  gap: 12px;
+  min-height: 28px;
+  color: #9d9d9d;
+}
+
+.profile-info-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+
+.profile-title-label {
+  color: #9d9d9d;
+  margin-left: 15px;
+  font-weight: 400;
+  white-space: nowrap;
+  margin-right: 2px;
+}
+
+.profile-title-value {
+  color: #ffffff;
+  font-weight: 500;
+  white-space: nowrap;
+  margin-right: 15px;
+}
+
+.profile-info-label {
+  color: #9d9d9d;
+  font-weight: 400;
+  white-space: nowrap;
+  margin-right: 2px;
+}
+
+.profile-info-value {
+  color: #ffffff;
+  font-weight: 500;
+  white-space: nowrap;
+  margin-right: 10px;
+}
+
+.profile-toolbar-spacer {
+  flex-grow: 1;
+}
+
+.profile-tools {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.profile-rotate-input {
+  width: 2.5em;
+  padding: 2px 4px;
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #666666;
+  border-radius: 2px;
+  font-size: 12px;
+  font-family: "Roboto", sans-serif;
+  outline: none;
+  text-align: center;
+}
+
+.profile-tool-icon {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.profile-tool-icon:hover {
+  opacity: 1;
+}
+
+/* Draw Container */
+.profile-draw-container {
+  width: 100%;
+  flex-grow: 1;
+  position: relative;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+.profile-background {
+  position: absolute;
+  left: 41px;
+  top: 0;
+  bottom: 20px;
+  width: calc(100% - 41px);
+  height: calc(100% - 20px);
+  background-color: transparent !important;
+}
+
+.profile-svg {
+  fill: #9d9d9d;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.profile-canvas-container {
+  position: absolute;
+  left: 41px;
+  top: 0;
+  bottom: 20px;
+  width: calc(100% - 41px);
+  height: calc(100% - 20px);
+}
+
+.profile-select {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 3px;
+  font-size: 12px;
+  padding: 2px 5px;
+  margin-left: 4px;
+}
+
+.profile-select option {
+  background: #222;
+  color: #fff;
+}
+
+/* ================================================
+   5. UTILITY CLASSES
+   ================================================ */
+
+.text-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.text-icon:hover {
+  opacity: 1;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+  #sidebar_left {
+    width: 30%;
+  }
+
+  .potree_container {
+    width: 70% !important;
+  }
+}
+
+@media (max-width: 768px) {
+  #sidebar_left {
+    width: 100%;
+    height: auto;
+    max-height: 50%;
+  }
+
+  .potree_container {
+    width: 100% !important;
+    height: 50% !important;
+    top: 50% !important;
+  }
+}

@@ -1,0 +1,2612 @@
+{
+  "xj_ajkc": {
+    "sessions": [
+      {
+        "session_id": "20250815_143021",
+        "sequence_count": 137,
+        "image_count": 411,
+        "trajectory_length_m": 1005,
+        "location": {
+          "latitude": 38.51791640254706,
+          "longitude": 75.88481353682687
+        },
+        "start_location": {
+          "latitude": 38.51512364369239,
+          "longitude": 75.8887125073079
+        },
+        "end_location": {
+          "latitude": 38.522065784715615,
+          "longitude": 75.88392034049755
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 137,
+      "image_count": 411,
+      "trajectory_length_m": 1005.0,
+      "location": {
+        "latitude": 38.51791640254706,
+        "longitude": 75.88481353682687
+      }
+    },
+    "full_name": "艾杰克村",
+    "name_details": {
+      "province": "新疆维吾尔自治区",
+      "city": "克孜勒苏柯尔克孜自治州",
+      "county": "阿克陶县"
+    }
+  },
+  "xj_altc": {
+    "sessions": [
+      {
+        "session_id": "20250807_155034",
+        "sequence_count": 155,
+        "image_count": 465,
+        "trajectory_length_m": 825,
+        "location": {
+          "latitude": 42.80931675362179,
+          "longitude": 93.4901626738672
+        },
+        "start_location": {
+          "latitude": 42.810600932555154,
+          "longitude": 93.48889692955504
+        },
+        "end_location": {
+          "latitude": 42.80609245156416,
+          "longitude": 93.48777910336833
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 155,
+      "image_count": 465,
+      "trajectory_length_m": 825.0,
+      "location": {
+        "latitude": 42.80931675362179,
+        "longitude": 93.4901626738672
+      }
+    },
+    "full_name": "阿勒屯村",
+    "name_details": {
+      "province": "新疆维吾尔族自治区",
+      "city": "哈密地区",
+      "county": "哈密市"
+    }
+  },
+  "xj_azhc": {
+    "sessions": [
+      {
+        "session_id": "20250816_132830",
+        "sequence_count": 179,
+        "image_count": 537,
+        "trajectory_length_m": 1468,
+        "location": {
+          "latitude": 39.70101066212761,
+          "longitude": 76.16178300707016
+        },
+        "start_location": {
+          "latitude": 39.69520162862487,
+          "longitude": 76.16789748691573
+        },
+        "end_location": {
+          "latitude": 39.70421374620446,
+          "longitude": 76.15889691972498
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 179,
+      "image_count": 537,
+      "trajectory_length_m": 1468.0,
+      "location": {
+        "latitude": 39.70101066212761,
+        "longitude": 76.16178300707016
+      }
+    },
+    "full_name": "阿孜汗村",
+    "name_details": {
+      "province": "新疆维吾尔自治区",
+      "city": "克孜勒苏柯尔克孜自治州",
+      "county": "阿图什市"
+    }
+  },
+  "xj_bstc": {
+    "sessions": [
+      {
+        "session_id": "20250807_171730",
+        "sequence_count": 188,
+        "image_count": 564,
+        "trajectory_length_m": 1487,
+        "location": {
+          "latitude": 42.933827428364324,
+          "longitude": 92.91513973835796
+        },
+        "start_location": {
+          "latitude": 42.93327401785314,
+          "longitude": 92.92113381424296
+        },
+        "end_location": {
+          "latitude": 42.93306996507579,
+          "longitude": 92.90796069998535
+        }
+      },
+      {
+        "session_id": "20250807_175358",
+        "sequence_count": 201,
+        "image_count": 603,
+        "trajectory_length_m": 1553,
+        "location": {
+          "latitude": 42.931557337560726,
+          "longitude": 92.90036896041694
+        },
+        "start_location": {
+          "latitude": 42.93329918411325,
+          "longitude": 92.90813879633791
+        },
+        "end_location": {
+          "latitude": 42.93528186897011,
+          "longitude": 92.89565789942698
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 389,
+      "image_count": 1167,
+      "trajectory_length_m": 3040.0,
+      "location": {
+        "latitude": 42.933827428364324,
+        "longitude": 92.91513973835796
+      }
+    },
+    "full_name": "博斯坦村",
+    "name_details": {
+      "province": "新疆维吾尔自治区",
+      "city": "哈密地区",
+      "county": "哈密市"
+    }
+  },
+  "xj_bxmlc": {
+    "sessions": [
+      {
+        "session_id": "20250810_142101",
+        "sequence_count": 66,
+        "image_count": 198,
+        "trajectory_length_m": 294,
+        "location": {
+          "latitude": 43.00001451139672,
+          "longitude": 89.23587269969372
+        },
+        "start_location": {
+          "latitude": 42.99958995129884,
+          "longitude": 89.23713628107772
+        },
+        "end_location": {
+          "latitude": 43.00051103602734,
+          "longitude": 89.23502111224964
+        }
+      },
+      {
+        "session_id": "20250810_150430",
+        "sequence_count": 148,
+        "image_count": 444,
+        "trajectory_length_m": 462,
+        "location": {
+          "latitude": 42.999392990362004,
+          "longitude": 89.23997762428125
+        },
+        "start_location": {
+          "latitude": 42.999577026879905,
+          "longitude": 89.24045443368004
+        },
+        "end_location": {
+          "latitude": 42.9975041147388,
+          "longitude": 89.24139702913837
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 214,
+      "image_count": 642,
+      "trajectory_length_m": 756.0,
+      "location": {
+        "latitude": 43.00001451139672,
+        "longitude": 89.23587269969372
+      }
+    },
+    "full_name": "拜西买里社区",
+    "name_details": {
+      "province": "新疆维吾尔自治区",
+      "city": "吐鲁番地区",
+      "county": "高昌区"
+    }
+  },
+  "xj_dqhc": {
+    "sessions": [
+      {
+        "session_id": "20250804_194531",
+        "sequence_count": 239,
+        "image_count": 717,
+        "trajectory_length_m": 171,
+        "location": {
+          "latitude": 43.990327443425635,
+          "longitude": 89.4151360596039
+        },
+        "start_location": {
+          "latitude": 43.99092889222861,
+          "longitude": 89.41455592658598
+        },
+        "end_location": {
+          "latitude": 43.996736218476265,
+          "longitude": 89.41186424169774
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 239,
+      "image_count": 717,
+      "trajectory_length_m": 171.0,
+      "location": {
+        "latitude": 43.990327443425635,
+        "longitude": 89.4151360596039
+      }
+    },
+    "full_name": "大泉湖村",
+    "name_details": {
+      "province": "新疆维吾尔自治区",
+      "city": "昌吉回族自治州",
+      "county": "奇台县"
+    }
+  },
+  "xj_glwst": {
+    "sessions": [
+      {
+        "session_id": "20250811_165559",
+        "sequence_count": 150,
+        "image_count": 457,
+        "trajectory_length_m": 1155,
+        "location": {
+          "latitude": 39.00157266717415,
+          "longitude": 88.17835922831173
+        },
+        "start_location": {
+          "latitude": 39.00154804517152,
+          "longitude": 88.18498169616232
+        },
+        "end_location": {
+          "latitude": 39.00520558020619,
+          "longitude": 88.17539150499178
+        }
+      },
+      {
+        "session_id": "20250811_171310",
+        "sequence_count": 195,
+        "image_count": 585,
+        "trajectory_length_m": 1632,
+        "location": {
+          "latitude": 39.01023623657048,
+          "longitude": 88.17245370698173
+        },
+        "start_location": {
+          "latitude": 39.00509287723048,
+          "longitude": 88.17556778195441
+        },
+        "end_location": {
+          "latitude": 39.01236260428322,
+          "longitude": 88.17980759553409
+        }
+      },
+      {
+        "session_id": "20250811_174227",
+        "sequence_count": 175,
+        "image_count": 525,
+        "trajectory_length_m": 1479,
+        "location": {
+          "latitude": 39.018730869947376,
+          "longitude": 88.17560822578382
+        },
+        "start_location": {
+          "latitude": 39.012203291010984,
+          "longitude": 88.17606068753096
+        },
+        "end_location": {
+          "latitude": 39.02406352646521,
+          "longitude": 88.17744251690685
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 520,
+      "image_count": 1567,
+      "trajectory_length_m": 4266.0,
+      "location": {
+        "latitude": 39.00157266717415,
+        "longitude": 88.17835922831173
+      }
+    },
+    "full_name": "果勒吾斯塘村",
+    "name_details": {
+      "province": "新疆维吾尔自治区",
+      "city": "巴音郭楞蒙古自治州",
+      "county": "若羌县"
+    }
+  },
+  "xj_hbyc": {
+    "sessions": [
+      {
+        "session_id": "20250806_155856",
+        "sequence_count": 190,
+        "image_count": 570,
+        "trajectory_length_m": 666,
+        "location": {
+          "latitude": 43.74634092215385,
+          "longitude": 90.30973954607396
+        },
+        "start_location": {
+          "latitude": 43.74700185259409,
+          "longitude": 90.30955803840685
+        },
+        "end_location": {
+          "latitude": 43.74728311602182,
+          "longitude": 90.3055459663825
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 190,
+      "image_count": 570,
+      "trajectory_length_m": 666.0,
+      "location": {
+        "latitude": 43.74634092215385,
+        "longitude": 90.30973954607396
+      }
+    },
+    "full_name": "河坝沿村",
+    "name_details": {
+      "province": "新疆维吾尔自治区",
+      "city": "昌吉回族自治州",
+      "county": "木垒哈萨克自治县"
+    }
+  },
+  "xj_hmc": {
+    "sessions": [
+      {
+        "session_id": "20250821_182359",
+        "sequence_count": 200,
+        "image_count": 600,
+        "trajectory_length_m": 3635,
+        "location": {
+          "latitude": 48.57010141686262,
+          "longitude": 87.42830093339242
+        },
+        "start_location": {
+          "latitude": 48.572000355112976,
+          "longitude": 87.44336703506002
+        },
+        "end_location": {
+          "latitude": 48.57164323628695,
+          "longitude": 87.44260493843505
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 200,
+      "image_count": 600,
+      "trajectory_length_m": 3635.0,
+      "location": {
+        "latitude": 48.57010141686262,
+        "longitude": 87.42830093339242
+      }
+    },
+    "full_name": "禾木村",
+    "name_details": {
+      "province": "新疆维吾尔自治区",
+      "city": "阿勒泰地区",
+      "county": "布尔津县"
+    }
+  },
+  "xj_hqc": {
+    "sessions": [
+      {
+        "session_id": "20250813_175132",
+        "sequence_count": 221,
+        "image_count": 663,
+        "trajectory_length_m": 2065,
+        "location": {
+          "latitude": 37.6840309433646,
+          "longitude": 82.79254636371736
+        },
+        "start_location": {
+          "latitude": 37.69218346850148,
+          "longitude": 82.7924453335665
+        },
+        "end_location": {
+          "latitude": 37.68013868875929,
+          "longitude": 82.80108666921649
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 221,
+      "image_count": 663,
+      "trajectory_length_m": 2065.0,
+      "location": {
+        "latitude": 37.6840309433646,
+        "longitude": 82.79254636371736
+      }
+    },
+    "full_name": "喀帕克阿斯干村",
+    "name_details": {
+      "province": "新疆维吾尔自治区",
+      "city": "和田地区",
+      "county": "民丰县"
+    }
+  },
+  "xj_huoerjia": {
+    "sessions": [
+      {
+        "session_id": "20250811_165859",
+        "sequence_count": 137,
+        "image_count": 411,
+        "trajectory_length_m": 653,
+        "location": {
+          "latitude": 41.13610361961311,
+          "longitude": 86.07237899500412
+        },
+        "start_location": {
+          "latitude": 41.13666213082207,
+          "longitude": 86.07152668677395
+        },
+        "end_location": {
+          "latitude": 41.136711427058025,
+          "longitude": 86.07150110294221
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 137,
+      "image_count": 411,
+      "trajectory_length_m": 653.0,
+      "location": {
+        "latitude": 41.13610361961311,
+        "longitude": 86.07237899500412
+      }
+    },
+    "full_name": "霍尔加村",
+    "name_details": {
+      "province": "新疆维吾尔自治区",
+      "city": "巴音郭楞蒙古自治州",
+      "county": "尉犁县"
+    }
+  },
+  "xj_jglsy": {
+    "sessions": [
+      {
+        "session_id": "20250812_195008",
+        "sequence_count": 165,
+        "image_count": 495,
+        "trajectory_length_m": 864,
+        "location": {
+          "latitude": 38.10427119907404,
+          "longitude": 86.57247546777506
+        },
+        "start_location": {
+          "latitude": 38.10404180805732,
+          "longitude": 86.5708829383638
+        },
+        "end_location": {
+          "latitude": 38.10387183037785,
+          "longitude": 86.57093791381521
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 165,
+      "image_count": 495,
+      "trajectory_length_m": 864.0,
+      "location": {
+        "latitude": 38.10427119907404,
+        "longitude": 86.57247546777506
+      }
+    },
+    "full_name": "江尕勒萨依村",
+    "name_details": {
+      "province": "新疆维吾尔自治区",
+      "city": "巴音郭楞蒙古自治州",
+      "county": "且末县"
+    }
+  },
+  "xj_klmlk": {
+    "sessions": [
+      {
+        "session_id": "20250812_172156",
+        "sequence_count": 129,
+        "image_count": 387,
+        "trajectory_length_m": 900,
+        "location": {
+          "latitude": 37.421652715872426,
+          "longitude": 85.7464011435395
+        },
+        "start_location": {
+          "latitude": 37.41964155109964,
+          "longitude": 85.74259509329049
+        },
+        "end_location": {
+          "latitude": 37.42237094297683,
+          "longitude": 85.74282870710314
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 129,
+      "image_count": 387,
+      "trajectory_length_m": 900.0,
+      "location": {
+        "latitude": 37.421652715872426,
+        "longitude": 85.7464011435395
+      }
+    },
+    "full_name": "库拉木勒克村",
+    "name_details": {
+      "province": "新疆维吾尔自治区",
+      "city": "巴音郭楞蒙古自治州",
+      "county": "且末县"
+    }
+  },
+  "xj_mzc": {
+    "sessions": [
+      {
+        "session_id": "20250808_141913",
+        "sequence_count": 115,
+        "image_count": 345,
+        "trajectory_length_m": 567,
+        "location": {
+          "latitude": 42.857898945752154,
+          "longitude": 89.69201700664607
+        },
+        "start_location": {
+          "latitude": 42.856542044358235,
+          "longitude": 89.69074773391762
+        },
+        "end_location": {
+          "latitude": 42.85961709737694,
+          "longitude": 89.69298624646812
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 115,
+      "image_count": 345,
+      "trajectory_length_m": 567.0,
+      "location": {
+        "latitude": 42.857898945752154,
+        "longitude": 89.69201700664607
+      }
+    },
+    "full_name": "麻扎村",
+    "name_details": {
+      "province": "新疆维吾尔自治区",
+      "city": "吐鲁番地区",
+      "county": "鄯善县"
+    }
+  },
+  "xj_pulu": {
+    "sessions": [
+      {
+        "session_id": "20250813_195754",
+        "sequence_count": 135,
+        "image_count": 405,
+        "trajectory_length_m": 739,
+        "location": {
+          "latitude": 36.18359095269769,
+          "longitude": 81.47883219499583
+        },
+        "start_location": {
+          "latitude": 36.186446249821216,
+          "longitude": 81.48056796789746
+        },
+        "end_location": {
+          "latitude": 36.18250191407777,
+          "longitude": 81.47988292135247
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 135,
+      "image_count": 405,
+      "trajectory_length_m": 739.0,
+      "location": {
+        "latitude": 36.18359095269769,
+        "longitude": 81.47883219499583
+      }
+    },
+    "full_name": "普鲁村",
+    "name_details": {
+      "province": "新疆维吾尔自治区",
+      "city": "和田地区",
+      "county": "于田县"
+    }
+  },
+  "xj_qkstc": {
+    "sessions": [
+      {
+        "session_id": "20250819_144911",
+        "sequence_count": 142,
+        "image_count": 426,
+        "trajectory_length_m": 802,
+        "location": {
+          "latitude": 42.915100227597854,
+          "longitude": 82.19717700447605
+        },
+        "start_location": {
+          "latitude": 42.915262290628476,
+          "longitude": 82.19365215006077
+        },
+        "end_location": {
+          "latitude": 42.913641931398345,
+          "longitude": 82.19743777068919
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 142,
+      "image_count": 426,
+      "trajectory_length_m": 802.0,
+      "location": {
+        "latitude": 42.915100227597854,
+        "longitude": 82.19717700447605
+      }
+    },
+    "full_name": "琼库什台村",
+    "name_details": {
+      "province": "新疆维吾尔族自治区",
+      "city": "伊犁哈萨克自治州",
+      "county": "特克斯县"
+    }
+  },
+  "xj_sekfc": {
+    "sessions": [
+      {
+        "session_id": "20250808_180542",
+        "sequence_count": 94,
+        "image_count": 282,
+        "trajectory_length_m": 620,
+        "location": {
+          "latitude": 42.81645099666447,
+          "longitude": 89.84205351004535
+        },
+        "start_location": {
+          "latitude": 42.81827785397125,
+          "longitude": 89.84149712535422
+        },
+        "end_location": {
+          "latitude": 42.815674635544404,
+          "longitude": 89.8436983019599
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 94,
+      "image_count": 282,
+      "trajectory_length_m": 620.0,
+      "location": {
+        "latitude": 42.81645099666447,
+        "longitude": 89.84205351004535
+      }
+    },
+    "full_name": "赛尔克甫村",
+    "name_details": {
+      "province": "新疆维吾尔自治区",
+      "city": "吐鲁番地区",
+      "county": "鄯善县"
+    }
+  },
+  "xj_shuimogou": {
+    "sessions": [
+      {
+        "session_id": "20250806_125239",
+        "sequence_count": 180,
+        "image_count": 540,
+        "trajectory_length_m": 785,
+        "location": {
+          "latitude": 43.71831126651591,
+          "longitude": 90.05861326042366
+        },
+        "start_location": {
+          "latitude": 43.71836917843547,
+          "longitude": 90.05846969684924
+        },
+        "end_location": {
+          "latitude": 43.72212116194247,
+          "longitude": 90.06202477184158
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 180,
+      "image_count": 540,
+      "trajectory_length_m": 785.0,
+      "location": {
+        "latitude": 43.71831126651591,
+        "longitude": 90.05861326042366
+      }
+    },
+    "full_name": "水磨沟村",
+    "name_details": {
+      "province": "新疆维吾尔自治区",
+      "city": "昌吉回族自治州",
+      "county": "木垒哈萨克自治县"
+    }
+  },
+  "xj_tltc": {
+    "sessions": [
+      {
+        "session_id": "20250822_102845",
+        "sequence_count": 125,
+        "image_count": 375,
+        "trajectory_length_m": 957,
+        "location": {
+          "latitude": 47.22936242208458,
+          "longitude": 89.87574366266195
+        },
+        "start_location": {
+          "latitude": 47.22704064075513,
+          "longitude": 89.8730692217359
+        },
+        "end_location": {
+          "latitude": 47.225469193868015,
+          "longitude": 89.87729348787073
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 125,
+      "image_count": 375,
+      "trajectory_length_m": 957.0,
+      "location": {
+        "latitude": 47.22936242208458,
+        "longitude": 89.87574366266195
+      }
+    },
+    "full_name": "塔拉特村",
+    "name_details": {
+      "province": "新疆维吾尔自治区",
+      "city": "阿勒泰地区",
+      "county": "富蕴县"
+    }
+  },
+  "xj_ygbc": {
+    "sessions": [
+      {
+        "session_id": "20250805_170949",
+        "sequence_count": 210,
+        "image_count": 630,
+        "trajectory_length_m": 849,
+        "location": {
+          "latitude": 43.74097920092752,
+          "longitude": 89.97985310784375
+        },
+        "start_location": {
+          "latitude": 43.73900728313446,
+          "longitude": 89.98759867601315
+        },
+        "end_location": {
+          "latitude": 43.7414085999122,
+          "longitude": 89.9734905002842
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 210,
+      "image_count": 630,
+      "trajectory_length_m": 849.0,
+      "location": {
+        "latitude": 43.74097920092752,
+        "longitude": 89.97985310784375
+      }
+    },
+    "full_name": "英格堡村",
+    "name_details": {
+      "province": "新疆维吾尔自治区",
+      "city": "昌吉回族自治州",
+      "county": "木垒哈萨克自治县"
+    }
+  },
+  "xj_yldc": {
+    "sessions": [
+      {
+        "session_id": "20250805_132400",
+        "sequence_count": 303,
+        "image_count": 909,
+        "trajectory_length_m": 1424,
+        "location": {
+          "latitude": 43.75816396288605,
+          "longitude": 89.97679992228656
+        },
+        "start_location": {
+          "latitude": 43.756846547328585,
+          "longitude": 89.97679722082293
+        },
+        "end_location": {
+          "latitude": 43.756831717233446,
+          "longitude": 89.97688499034865
+        }
+      },
+      {
+        "session_id": "20250805_155249",
+        "sequence_count": 335,
+        "image_count": 450,
+        "trajectory_length_m": 933,
+        "location": {
+          "latitude": 43.75804025160268,
+          "longitude": 89.97675162706325
+        },
+        "start_location": {
+          "latitude": 43.75942416028508,
+          "longitude": 89.97636782941316
+        },
+        "end_location": {
+          "latitude": 43.75335652331391,
+          "longitude": 89.97689101514989
+        }
+      },
+      {
+        "session_id": "20250805_200113",
+        "sequence_count": 195,
+        "image_count": 585,
+        "trajectory_length_m": 738,
+        "location": {
+          "latitude": 43.76121670027726,
+          "longitude": 89.9779089365948
+        },
+        "start_location": {
+          "latitude": 43.75615237786921,
+          "longitude": 89.9756742826288
+        },
+        "end_location": {
+          "latitude": 43.75545653434408,
+          "longitude": 89.97596824676835
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 833,
+      "image_count": 1944,
+      "trajectory_length_m": 3095.0,
+      "location": {
+        "latitude": 43.75816396288605,
+        "longitude": 89.97679992228656
+      }
+    },
+    "full_name": "月亮地村",
+    "name_details": {
+      "province": "新疆维吾尔自治区",
+      "city": "昌吉回族自治州",
+      "county": "木垒哈萨克自治县"
+    }
+  },
+  "xz_lz": {
+    "sessions": [
+      {
+        "session_id": "20250905_115014",
+        "sequence_count": 135,
+        "image_count": 405,
+        "trajectory_length_m": 1038,
+        "location": {
+          "latitude": 29.161046666666667,
+          "longitude": 87.68584166666666
+        },
+        "start_location": {
+          "latitude": 29.160980000000002,
+          "longitude": 87.68098333333334
+        },
+        "end_location": {
+          "latitude": 29.159676666666662,
+          "longitude": 87.68881666666667
+        }
+      },
+      {
+        "session_id": "20250905_120409",
+        "sequence_count": 90,
+        "image_count": 270,
+        "trajectory_length_m": 616,
+        "location": {
+          "latitude": 29.158201666666667,
+          "longitude": 87.68998666666667
+        },
+        "start_location": {
+          "latitude": 29.15960166666667,
+          "longitude": 87.68876166666665
+        },
+        "end_location": {
+          "latitude": 29.156916666666667,
+          "longitude": 87.69234333333334
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 225,
+      "image_count": 675,
+      "trajectory_length_m": 1654.0,
+      "location": {
+        "latitude": 29.161046666666667,
+        "longitude": 87.68584166666666
+      }
+    },
+    "full_name": "拉孜",
+    "name_details": {
+      "province": "西藏自治区",
+      "city": "日喀则市",
+      "county": "拉孜县"
+    }
+  },
+  "xz_yj_xz_bedk": {
+    "sessions": [
+      {
+        "session_id": "20250816_094651",
+        "sequence_count": 273,
+        "image_count": 819,
+        "trajectory_length_m": 815,
+        "location": {
+          "latitude": 29.035066666666662,
+          "longitude": 98.58729
+        },
+        "start_location": {
+          "latitude": 29.036131666666666,
+          "longitude": 98.58697333333333
+        },
+        "end_location": {
+          "latitude": 29.037395,
+          "longitude": 98.58701500000001
+        }
+      },
+      {
+        "session_id": "20250816_102056",
+        "sequence_count": 219,
+        "image_count": 657,
+        "trajectory_length_m": 488,
+        "location": {
+          "latitude": 29.039295,
+          "longitude": 98.58755833333335
+        },
+        "start_location": {
+          "latitude": 29.037415000000003,
+          "longitude": 98.58700833333333
+        },
+        "end_location": {
+          "latitude": 29.039598333333334,
+          "longitude": 98.58877499999998
+        }
+      },
+      {
+        "session_id": "20250816_112443",
+        "sequence_count": 57,
+        "image_count": 171,
+        "trajectory_length_m": 177,
+        "location": {
+          "latitude": 29.03574833333333,
+          "longitude": 98.58968833333331
+        },
+        "start_location": {
+          "latitude": 29.03568833333333,
+          "longitude": 98.58928499999999
+        },
+        "end_location": {
+          "latitude": 29.035146666666666,
+          "longitude": 98.58966833333334
+        }
+      },
+      {
+        "session_id": "20250816_134625",
+        "sequence_count": 242,
+        "image_count": 726,
+        "trajectory_length_m": 843,
+        "location": {
+          "latitude": 29.034826666666664,
+          "longitude": 98.58715333333333
+        },
+        "start_location": {
+          "latitude": 29.037278333333333,
+          "longitude": 98.58692666666666
+        },
+        "end_location": {
+          "latitude": 29.036681666666663,
+          "longitude": 98.58675833333334
+        }
+      },
+      {
+        "session_id": "20250816_141703",
+        "sequence_count": 201,
+        "image_count": 603,
+        "trajectory_length_m": 550,
+        "location": {
+          "latitude": 29.038749999999997,
+          "longitude": 98.58724166666667
+        },
+        "start_location": {
+          "latitude": 29.036688333333338,
+          "longitude": 98.58674500000001
+        },
+        "end_location": {
+          "latitude": 29.040106666666663,
+          "longitude": 98.58875666666667
+        }
+      },
+      {
+        "session_id": "20250816_144103",
+        "sequence_count": 85,
+        "image_count": 260,
+        "trajectory_length_m": 168,
+        "location": {
+          "latitude": 29.039648333333336,
+          "longitude": 98.58869666666666
+        },
+        "start_location": {
+          "latitude": 29.039965,
+          "longitude": 98.58902666666667
+        },
+        "end_location": {
+          "latitude": 29.03914166666667,
+          "longitude": 98.58825666666668
+        }
+      },
+      {
+        "session_id": "20250816_145032",
+        "sequence_count": 225,
+        "image_count": 675,
+        "trajectory_length_m": 816,
+        "location": {
+          "latitude": 29.03714166666667,
+          "longitude": 98.58960499999999
+        },
+        "start_location": {
+          "latitude": 29.039103333333333,
+          "longitude": 98.58821000000002
+        },
+        "end_location": {
+          "latitude": 29.035188333333334,
+          "longitude": 98.58966333333335
+        }
+      },
+      {
+        "session_id": "20250816_175131",
+        "sequence_count": 260,
+        "image_count": 780,
+        "trajectory_length_m": 567,
+        "location": {
+          "latitude": 29.03545166666667,
+          "longitude": 98.586445
+        },
+        "start_location": {
+          "latitude": 29.034795,
+          "longitude": 98.58687166666665
+        },
+        "end_location": {
+          "latitude": 29.03844333333333,
+          "longitude": 98.58728500000001
+        }
+      },
+      {
+        "session_id": "20250816_182257",
+        "sequence_count": 227,
+        "image_count": 681,
+        "trajectory_length_m": 684,
+        "location": {
+          "latitude": 29.040135000000003,
+          "longitude": 98.58869000000001
+        },
+        "start_location": {
+          "latitude": 29.038805000000004,
+          "longitude": 98.58836333333332
+        },
+        "end_location": {
+          "latitude": 29.038418333333333,
+          "longitude": 98.58850666666667
+        }
+      },
+      {
+        "session_id": "20250816_184933",
+        "sequence_count": 145,
+        "image_count": 435,
+        "trajectory_length_m": 581,
+        "location": {
+          "latitude": 29.036488333333335,
+          "longitude": 98.58901833333333
+        },
+        "start_location": {
+          "latitude": 29.038359999999997,
+          "longitude": 98.58855166666666
+        },
+        "end_location": {
+          "latitude": 29.03521,
+          "longitude": 98.58966333333335
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 1934,
+      "image_count": 5807,
+      "trajectory_length_m": 5689.0,
+      "location": {
+        "latitude": 29.035066666666662,
+        "longitude": 98.58729
+      }
+    },
+    "full_name": "布尔堆卡",
+    "name_details": {
+      "province": "西藏自治区",
+      "city": "昌都市",
+      "county": "芒康县"
+    }
+  },
+  "xz_yj_xz_ddg": {
+    "sessions": [
+      {
+        "session_id": "20250814_102616",
+        "sequence_count": 295,
+        "image_count": 885,
+        "trajectory_length_m": 503,
+        "location": {
+          "latitude": 29.167528333333333,
+          "longitude": 98.63293333333334
+        },
+        "start_location": {
+          "latitude": 29.166020000000003,
+          "longitude": 98.63396166666668
+        },
+        "end_location": {
+          "latitude": 29.168729999999996,
+          "longitude": 98.63248833333334
+        }
+      },
+      {
+        "session_id": "20250814_142823",
+        "sequence_count": 314,
+        "image_count": 678,
+        "trajectory_length_m": 509,
+        "location": {
+          "latitude": 29.16715166666667,
+          "longitude": 98.63286166666667
+        },
+        "start_location": {
+          "latitude": 29.16583666666667,
+          "longitude": 98.63421166666667
+        },
+        "end_location": {
+          "latitude": 29.16879666666667,
+          "longitude": 98.63248666666665
+        }
+      },
+      {
+        "session_id": "20250814_175201",
+        "sequence_count": 264,
+        "image_count": 792,
+        "trajectory_length_m": 675,
+        "location": {
+          "latitude": 29.16573166666667,
+          "longitude": 98.63488000000001
+        },
+        "start_location": {
+          "latitude": 29.164971666666663,
+          "longitude": 98.63450833333333
+        },
+        "end_location": {
+          "latitude": 29.163731666666664,
+          "longitude": 98.63419999999999
+        }
+      },
+      {
+        "session_id": "20250814_182521",
+        "sequence_count": 120,
+        "image_count": 365,
+        "trajectory_length_m": 252,
+        "location": {
+          "latitude": 29.165345000000002,
+          "longitude": 98.634285
+        },
+        "start_location": {
+          "latitude": 29.164171666666668,
+          "longitude": 98.63433833333332
+        },
+        "end_location": {
+          "latitude": 29.166045,
+          "longitude": 98.63398000000001
+        }
+      },
+      {
+        "session_id": "20250814_184308",
+        "sequence_count": 245,
+        "image_count": 735,
+        "trajectory_length_m": 464,
+        "location": {
+          "latitude": 29.16714833333333,
+          "longitude": 98.63286666666666
+        },
+        "start_location": {
+          "latitude": 29.166245000000004,
+          "longitude": 98.63383666666665
+        },
+        "end_location": {
+          "latitude": 29.168834999999998,
+          "longitude": 98.63248166666666
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 1238,
+      "image_count": 3455,
+      "trajectory_length_m": 2403.0,
+      "location": {
+        "latitude": 29.167528333333333,
+        "longitude": 98.63293333333334
+      }
+    },
+    "full_name": "达底贡",
+    "name_details": {
+      "province": "西藏自治区",
+      "city": "昌都市",
+      "county": "芒康县"
+    }
+  },
+  "xz_yj_xz_dx": {
+    "sessions": [
+      {
+        "session_id": "20250826_095822",
+        "sequence_count": 277,
+        "image_count": 831,
+        "trajectory_length_m": 2127,
+        "location": {
+          "latitude": 29.0683208,
+          "longitude": 98.6014013
+        },
+        "start_location": {
+          "latitude": 29.0753883,
+          "longitude": 98.605965
+        },
+        "end_location": {
+          "latitude": 29.0692503,
+          "longitude": 98.5958146
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 277,
+      "image_count": 831,
+      "trajectory_length_m": 2127.0,
+      "location": {
+        "latitude": 29.0683208,
+        "longitude": 98.6014013
+      }
+    },
+    "full_name": "达许",
+    "name_details": {
+      "province": "西藏自治区",
+      "city": "昌都市",
+      "county": "芒康县"
+    }
+  },
+  "xz_yj_xz_gr": {
+    "sessions": [
+      {
+        "session_id": "20250815_101423",
+        "sequence_count": 182,
+        "image_count": 546,
+        "trajectory_length_m": 586,
+        "location": {
+          "latitude": 29.056874,
+          "longitude": 98.6011634
+        },
+        "start_location": {
+          "latitude": 29.054525,
+          "longitude": 98.6015317
+        },
+        "end_location": {
+          "latitude": 29.0574791,
+          "longitude": 98.6019965
+        }
+      },
+      {
+        "session_id": "20250815_134435",
+        "sequence_count": 385,
+        "image_count": 1158,
+        "trajectory_length_m": 807,
+        "location": {
+          "latitude": 29.0569533,
+          "longitude": 98.6012267
+        },
+        "start_location": {
+          "latitude": 29.0545867,
+          "longitude": 98.601325
+        },
+        "end_location": {
+          "latitude": 29.0579886,
+          "longitude": 98.6012495
+        }
+      },
+      {
+        "session_id": "20250815_143714",
+        "sequence_count": 245,
+        "image_count": 735,
+        "trajectory_length_m": 380,
+        "location": {
+          "latitude": 29.0584642,
+          "longitude": 98.6027089
+        },
+        "start_location": {
+          "latitude": 29.0579,
+          "longitude": 98.6023267
+        },
+        "end_location": {
+          "latitude": 29.0601331,
+          "longitude": 98.6032076
+        }
+      },
+      {
+        "session_id": "20250815_181308",
+        "sequence_count": 213,
+        "image_count": 639,
+        "trajectory_length_m": 659,
+        "location": {
+          "latitude": 29.0563006,
+          "longitude": 98.6020225
+        },
+        "start_location": {
+          "latitude": 29.0547017,
+          "longitude": 98.6014633
+        },
+        "end_location": {
+          "latitude": 29.0580133,
+          "longitude": 98.602335
+        }
+      },
+      {
+        "session_id": "20250815_185522",
+        "sequence_count": 179,
+        "image_count": 537,
+        "trajectory_length_m": 345,
+        "location": {
+          "latitude": 29.05946,
+          "longitude": 98.6030133
+        },
+        "start_location": {
+          "latitude": 29.0579617,
+          "longitude": 98.6022283
+        },
+        "end_location": {
+          "latitude": 29.060245,
+          "longitude": 98.6032367
+        }
+      },
+      {
+        "session_id": "20250830_100259",
+        "sequence_count": 390,
+        "image_count": 1170,
+        "trajectory_length_m": 2034,
+        "location": {
+          "latitude": 29.0579237,
+          "longitude": 98.6020792
+        },
+        "start_location": {
+          "latitude": 29.0582033,
+          "longitude": 98.602735
+        },
+        "end_location": {
+          "latitude": 29.0599833,
+          "longitude": 98.603282
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 1594,
+      "image_count": 4785,
+      "trajectory_length_m": 4811.0,
+      "location": {
+        "latitude": 29.056874,
+        "longitude": 98.6011634
+      }
+    },
+    "full_name": "滚热",
+    "name_details": {
+      "province": "西藏自治区",
+      "city": "昌都市",
+      "county": "芒康县"
+    }
+  },
+  "xz_yj_xz_jd": {
+    "sessions": [
+      {
+        "session_id": "20250824_135414",
+        "sequence_count": 245,
+        "image_count": 735,
+        "trajectory_length_m": 943,
+        "location": {
+          "latitude": 29.0462333,
+          "longitude": 98.5917533
+        },
+        "start_location": {
+          "latitude": 29.0499783,
+          "longitude": 98.5919533
+        },
+        "end_location": {
+          "latitude": 29.043157,
+          "longitude": 98.5920198
+        }
+      },
+      {
+        "session_id": "20250824_142510",
+        "sequence_count": 305,
+        "image_count": 915,
+        "trajectory_length_m": 1907,
+        "location": {
+          "latitude": 29.04204,
+          "longitude": 98.594535
+        },
+        "start_location": {
+          "latitude": 29.04172,
+          "longitude": 98.5920733
+        },
+        "end_location": {
+          "latitude": 29.0326067,
+          "longitude": 98.59379
+        }
+      },
+      {
+        "session_id": "20250824_175741",
+        "sequence_count": 215,
+        "image_count": 645,
+        "trajectory_length_m": 874,
+        "location": {
+          "latitude": 29.0458697,
+          "longitude": 98.5919085
+        },
+        "start_location": {
+          "latitude": 29.0500383,
+          "longitude": 98.5919833
+        },
+        "end_location": {
+          "latitude": 29.043325,
+          "longitude": 98.591785
+        }
+      },
+      {
+        "session_id": "20250824_182521",
+        "sequence_count": 175,
+        "image_count": 525,
+        "trajectory_length_m": 473,
+        "location": {
+          "latitude": 29.0425383,
+          "longitude": 98.59362
+        },
+        "start_location": {
+          "latitude": 29.04305,
+          "longitude": 98.5919383
+        },
+        "end_location": {
+          "latitude": 29.0423614,
+          "longitude": 98.5943476
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 940,
+      "image_count": 2820,
+      "trajectory_length_m": 4197.0,
+      "location": {
+        "latitude": 29.0462333,
+        "longitude": 98.5917533
+      }
+    },
+    "full_name": "加达",
+    "name_details": {
+      "province": "西藏自治区",
+      "city": "昌都市",
+      "county": "芒康县"
+    }
+  },
+  "xz_yj_xz_ld": {
+    "sessions": [
+      {
+        "session_id": "20250823_134740",
+        "sequence_count": 22,
+        "image_count": 66,
+        "trajectory_length_m": 50,
+        "location": {
+          "latitude": 29.0339625,
+          "longitude": 98.6062961
+        },
+        "start_location": {
+          "latitude": 29.0339452,
+          "longitude": 98.6063138
+        },
+        "end_location": {
+          "latitude": 29.0339493,
+          "longitude": 98.6062616
+        }
+      },
+      {
+        "session_id": "20250823_152040",
+        "sequence_count": 137,
+        "image_count": 411,
+        "trajectory_length_m": 623,
+        "location": {
+          "latitude": 29.0173301,
+          "longitude": 98.5990526
+        },
+        "start_location": {
+          "latitude": 29.019225,
+          "longitude": 98.5977748
+        },
+        "end_location": {
+          "latitude": 29.0155412,
+          "longitude": 98.598142
+        }
+      },
+      {
+        "session_id": "20250823_153533",
+        "sequence_count": 196,
+        "image_count": 588,
+        "trajectory_length_m": 842,
+        "location": {
+          "latitude": 29.0119665,
+          "longitude": 98.5985107
+        },
+        "start_location": {
+          "latitude": 29.0155542,
+          "longitude": 98.5981384
+        },
+        "end_location": {
+          "latitude": 29.0107286,
+          "longitude": 98.5990275
+        }
+      },
+      {
+        "session_id": "20250823_155745",
+        "sequence_count": 161,
+        "image_count": 483,
+        "trajectory_length_m": 716,
+        "location": {
+          "latitude": 29.0095479,
+          "longitude": 98.6008778
+        },
+        "start_location": {
+          "latitude": 29.0107366,
+          "longitude": 98.5990525
+        },
+        "end_location": {
+          "latitude": 29.0108828,
+          "longitude": 98.6022372
+        }
+      },
+      {
+        "session_id": "20250823_161628",
+        "sequence_count": 135,
+        "image_count": 405,
+        "trajectory_length_m": 912,
+        "location": {
+          "latitude": 29.0100045,
+          "longitude": 98.6018421
+        },
+        "start_location": {
+          "latitude": 29.0108794,
+          "longitude": 98.6022052
+        },
+        "end_location": {
+          "latitude": 29.0100951,
+          "longitude": 98.604138
+        }
+      },
+      {
+        "session_id": "20250823_163046",
+        "sequence_count": 108,
+        "image_count": 324,
+        "trajectory_length_m": 519,
+        "location": {
+          "latitude": 29.0120876,
+          "longitude": 98.6048101
+        },
+        "start_location": {
+          "latitude": 29.0101004,
+          "longitude": 98.604219
+        },
+        "end_location": {
+          "latitude": 29.0101959,
+          "longitude": 98.6051112
+        }
+      },
+      {
+        "session_id": "20250823_164151",
+        "sequence_count": 130,
+        "image_count": 390,
+        "trajectory_length_m": 664,
+        "location": {
+          "latitude": 29.0102968,
+          "longitude": 98.6054396
+        },
+        "start_location": {
+          "latitude": 29.0103371,
+          "longitude": 98.6050815
+        },
+        "end_location": {
+          "latitude": 29.0105629,
+          "longitude": 98.6062228
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 889,
+      "image_count": 2667,
+      "trajectory_length_m": 4326.0,
+      "location": {
+        "latitude": 29.0339625,
+        "longitude": 98.6062961
+      }
+    },
+    "full_name": "勒丁",
+    "name_details": {
+      "province": "西藏自治区",
+      "city": "昌都市",
+      "county": "芒康县"
+    }
+  },
+  "xz_yj_xz_ljx": {
+    "sessions": [
+      {
+        "session_id": "20250825_100258",
+        "sequence_count": 152,
+        "image_count": 456,
+        "trajectory_length_m": 689,
+        "location": {
+          "latitude": 29.128677,
+          "longitude": 98.6342761
+        },
+        "start_location": {
+          "latitude": 29.1279017,
+          "longitude": 98.6351333
+        },
+        "end_location": {
+          "latitude": 29.1291617,
+          "longitude": 98.633153
+        }
+      },
+      {
+        "session_id": "20250825_135459",
+        "sequence_count": 230,
+        "image_count": 690,
+        "trajectory_length_m": 1442,
+        "location": {
+          "latitude": 29.1313153,
+          "longitude": 98.6334233
+        },
+        "start_location": {
+          "latitude": 29.1280517,
+          "longitude": 98.635155
+        },
+        "end_location": {
+          "latitude": 29.1320086,
+          "longitude": 98.6328116
+        }
+      },
+      {
+        "session_id": "20250825_142217",
+        "sequence_count": 282,
+        "image_count": 846,
+        "trajectory_length_m": 1918,
+        "location": {
+          "latitude": 29.139151,
+          "longitude": 98.6365637
+        },
+        "start_location": {
+          "latitude": 29.1319717,
+          "longitude": 98.63284
+        },
+        "end_location": {
+          "latitude": 29.1430167,
+          "longitude": 98.6381717
+        }
+      },
+      {
+        "session_id": "20250825_182711",
+        "sequence_count": 6,
+        "image_count": 18,
+        "trajectory_length_m": 10,
+        "location": {
+          "latitude": 29.1323928,
+          "longitude": 98.6332122
+        },
+        "start_location": {
+          "latitude": 29.1323817,
+          "longitude": 98.6333018
+        },
+        "end_location": {
+          "latitude": 29.1324032,
+          "longitude": 98.6332054
+        }
+      },
+      {
+        "session_id": "20250825_182800",
+        "sequence_count": 225,
+        "image_count": 675,
+        "trajectory_length_m": 1602,
+        "location": {
+          "latitude": 29.1373541,
+          "longitude": 98.636825
+        },
+        "start_location": {
+          "latitude": 29.1323933,
+          "longitude": 98.6331917
+        },
+        "end_location": {
+          "latitude": 29.1429867,
+          "longitude": 98.6382249
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 895,
+      "image_count": 2685,
+      "trajectory_length_m": 5661.0,
+      "location": {
+        "latitude": 29.128677,
+        "longitude": 98.6342761
+      }
+    },
+    "full_name": "拉九西",
+    "name_details": {
+      "province": "西藏自治区",
+      "city": "昌都市",
+      "county": "芒康县"
+    }
+  },
+  "xz_yj_xz_lr": {
+    "sessions": [
+      {
+        "session_id": "20250818_102306",
+        "sequence_count": 211,
+        "image_count": 633,
+        "trajectory_length_m": 542,
+        "location": {
+          "latitude": 28.985096666666664,
+          "longitude": 98.63533166666666
+        },
+        "start_location": {
+          "latitude": 28.984114999999996,
+          "longitude": 98.63762833333334
+        },
+        "end_location": {
+          "latitude": 28.986995,
+          "longitude": 98.63516999999999
+        }
+      },
+      {
+        "session_id": "20250818_104802",
+        "sequence_count": 236,
+        "image_count": 708,
+        "trajectory_length_m": 425,
+        "location": {
+          "latitude": 28.987914999999997,
+          "longitude": 98.63429666666667
+        },
+        "start_location": {
+          "latitude": 28.987418333333334,
+          "longitude": 98.63499833333331
+        },
+        "end_location": {
+          "latitude": 28.98856166666667,
+          "longitude": 98.6344
+        }
+      },
+      {
+        "session_id": "20250818_135903",
+        "sequence_count": 195,
+        "image_count": 585,
+        "trajectory_length_m": 570,
+        "location": {
+          "latitude": 28.985110000000002,
+          "longitude": 98.635335
+        },
+        "start_location": {
+          "latitude": 28.983979999999995,
+          "longitude": 98.63781833333333
+        },
+        "end_location": {
+          "latitude": 28.98703833333333,
+          "longitude": 98.63514166666667
+        }
+      },
+      {
+        "session_id": "20250818_142236",
+        "sequence_count": 210,
+        "image_count": 630,
+        "trajectory_length_m": 342,
+        "location": {
+          "latitude": 28.98784,
+          "longitude": 98.63435166666667
+        },
+        "start_location": {
+          "latitude": 28.987016666666666,
+          "longitude": 98.6351
+        },
+        "end_location": {
+          "latitude": 28.988509999999998,
+          "longitude": 98.63432499999999
+        }
+      },
+      {
+        "session_id": "20250818_175843",
+        "sequence_count": 347,
+        "image_count": 1041,
+        "trajectory_length_m": 889,
+        "location": {
+          "latitude": 28.98705,
+          "longitude": 98.63513333333334
+        },
+        "start_location": {
+          "latitude": 28.984226666666668,
+          "longitude": 98.63737666666665
+        },
+        "end_location": {
+          "latitude": 28.9885,
+          "longitude": 98.63433333333333
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 1199,
+      "image_count": 3597,
+      "trajectory_length_m": 2768.0,
+      "location": {
+        "latitude": 28.985096666666664,
+        "longitude": 98.63533166666666
+      }
+    },
+    "full_name": "龙日",
+    "name_details": {
+      "province": "西藏自治区",
+      "city": "昌都市",
+      "county": "芒康县"
+    }
+  },
+  "xz_yj_xz_nx": {
+    "sessions": [
+      {
+        "session_id": "20250829_162448",
+        "sequence_count": 300,
+        "image_count": 900,
+        "trajectory_length_m": 4549,
+        "location": {
+          "latitude": 29.0298793,
+          "longitude": 98.6024696
+        },
+        "start_location": {
+          "latitude": 29.040135,
+          "longitude": 98.6126267
+        },
+        "end_location": {
+          "latitude": 29.0234125,
+          "longitude": 98.6100859
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 300,
+      "image_count": 900,
+      "trajectory_length_m": 4549.0,
+      "location": {
+        "latitude": 29.0298793,
+        "longitude": 98.6024696
+      }
+    },
+    "full_name": "纳西民族乡",
+    "name_details": {
+      "province": "西藏自治区",
+      "city": "昌都市",
+      "county": "芒康县"
+    }
+  },
+  "xz_yj_xz_syj": {
+    "sessions": [
+      {
+        "session_id": "20250817_093054",
+        "sequence_count": 266,
+        "image_count": 798,
+        "trajectory_length_m": 1040,
+        "location": {
+          "latitude": 29.043435,
+          "longitude": 98.6130667
+        },
+        "start_location": {
+          "latitude": 29.0420833,
+          "longitude": 98.6171867
+        },
+        "end_location": {
+          "latitude": 29.044065,
+          "longitude": 98.6086183
+        }
+      },
+      {
+        "session_id": "20250817_100436",
+        "sequence_count": 215,
+        "image_count": 645,
+        "trajectory_length_m": 850,
+        "location": {
+          "latitude": 29.0458462,
+          "longitude": 98.6096069
+        },
+        "start_location": {
+          "latitude": 29.04411,
+          "longitude": 98.60862
+        },
+        "end_location": {
+          "latitude": 29.047555,
+          "longitude": 98.6082617
+        }
+      },
+      {
+        "session_id": "20250817_102941",
+        "sequence_count": 213,
+        "image_count": 639,
+        "trajectory_length_m": 756,
+        "location": {
+          "latitude": 29.0497634,
+          "longitude": 98.6058577
+        },
+        "start_location": {
+          "latitude": 29.0475433,
+          "longitude": 98.6082067
+        },
+        "end_location": {
+          "latitude": 29.0507583,
+          "longitude": 98.6057767
+        }
+      },
+      {
+        "session_id": "20250817_140246",
+        "sequence_count": 184,
+        "image_count": 552,
+        "trajectory_length_m": 986,
+        "location": {
+          "latitude": 29.0450183,
+          "longitude": 98.607755
+        },
+        "start_location": {
+          "latitude": 29.0435017,
+          "longitude": 98.6116567
+        },
+        "end_location": {
+          "latitude": 29.0470662,
+          "longitude": 98.6106324
+        }
+      },
+      {
+        "session_id": "20250817_142321",
+        "sequence_count": 195,
+        "image_count": 594,
+        "trajectory_length_m": 782,
+        "location": {
+          "latitude": 29.0477833,
+          "longitude": 98.6070817
+        },
+        "start_location": {
+          "latitude": 29.0470817,
+          "longitude": 98.6106433
+        },
+        "end_location": {
+          "latitude": 29.0502199,
+          "longitude": 98.6059484
+        }
+      },
+      {
+        "session_id": "20250817_144600",
+        "sequence_count": 96,
+        "image_count": 288,
+        "trajectory_length_m": 285,
+        "location": {
+          "latitude": 29.0508797,
+          "longitude": 98.605299
+        },
+        "start_location": {
+          "latitude": 29.0501133,
+          "longitude": 98.605905
+        },
+        "end_location": {
+          "latitude": 29.05078,
+          "longitude": 98.6059417
+        }
+      },
+      {
+        "session_id": "20250817_181255",
+        "sequence_count": 195,
+        "image_count": 585,
+        "trajectory_length_m": 1203,
+        "location": {
+          "latitude": 29.0435642,
+          "longitude": 98.6116852
+        },
+        "start_location": {
+          "latitude": 29.0422983,
+          "longitude": 98.61716
+        },
+        "end_location": {
+          "latitude": 29.045125,
+          "longitude": 98.6077717
+        }
+      },
+      {
+        "session_id": "20250817_183445",
+        "sequence_count": 180,
+        "image_count": 540,
+        "trajectory_length_m": 760,
+        "location": {
+          "latitude": 29.0464396,
+          "longitude": 98.6101204
+        },
+        "start_location": {
+          "latitude": 29.0450933,
+          "longitude": 98.6077233
+        },
+        "end_location": {
+          "latitude": 29.047594,
+          "longitude": 98.6081505
+        }
+      },
+      {
+        "session_id": "20250817_185655",
+        "sequence_count": 205,
+        "image_count": 615,
+        "trajectory_length_m": 687,
+        "location": {
+          "latitude": 29.0502667,
+          "longitude": 98.6059983
+        },
+        "start_location": {
+          "latitude": 29.0477733,
+          "longitude": 98.6070317
+        },
+        "end_location": {
+          "latitude": 29.0507333,
+          "longitude": 98.6059767
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 1749,
+      "image_count": 5256,
+      "trajectory_length_m": 7349.0,
+      "location": {
+        "latitude": 29.043435,
+        "longitude": 98.6130667
+      }
+    },
+    "full_name": "上盐井",
+    "name_details": {
+      "province": "西藏自治区",
+      "city": "昌都市",
+      "county": "芒康县"
+    }
+  },
+  "zj_adhc": {
+    "sessions": [
+      {
+        "session_id": "20250924_153023",
+        "sequence_count": 336,
+        "image_count": 1008,
+        "trajectory_length_m": 1010,
+        "location": {
+          "latitude": 28.2815904,
+          "longitude": 119.279475
+        },
+        "start_location": {
+          "latitude": 28.2798553,
+          "longitude": 119.2796823
+        },
+        "end_location": {
+          "latitude": 28.2799677,
+          "longitude": 119.2794701
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 336,
+      "image_count": 1008,
+      "trajectory_length_m": 1010.0,
+      "location": {
+        "latitude": 28.2815904,
+        "longitude": 119.279475
+      }
+    },
+    "full_name": "安岱后村",
+    "name_details": {
+      "province": "浙江省",
+      "city": "丽水市",
+      "county": "松阳县"
+    }
+  },
+  "zj_cjpc": {
+    "sessions": [
+      {
+        "session_id": "20250922_132039",
+        "sequence_count": 138,
+        "image_count": 414,
+        "trajectory_length_m": 406,
+        "location": {
+          "latitude": 28.52583666666667,
+          "longitude": 119.50794666666667
+        },
+        "start_location": {
+          "latitude": 28.52524,
+          "longitude": 119.509135
+        },
+        "end_location": {
+          "latitude": 28.52646333333333,
+          "longitude": 119.50707499999999
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 138,
+      "image_count": 414,
+      "trajectory_length_m": 406.0,
+      "location": {
+        "latitude": 28.52583666666667,
+        "longitude": 119.50794666666667
+      }
+    },
+    "full_name": "陈家铺村",
+    "name_details": {
+      "province": "浙江省",
+      "city": "丽水市",
+      "county": "松阳县"
+    }
+  },
+  "zj_czc": {
+    "sessions": [
+      {
+        "session_id": "20250923_122231",
+        "sequence_count": 132,
+        "image_count": 396,
+        "trajectory_length_m": 489,
+        "location": {
+          "latitude": 28.294343333333337,
+          "longitude": 119.50545333333334
+        },
+        "start_location": {
+          "latitude": 28.29199833333333,
+          "longitude": 119.50516833333334
+        },
+        "end_location": {
+          "latitude": 28.294358333333335,
+          "longitude": 119.50569833333333
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 132,
+      "image_count": 396,
+      "trajectory_length_m": 489.0,
+      "location": {
+        "latitude": 28.294343333333337,
+        "longitude": 119.50545333333334
+      }
+    },
+    "full_name": "蔡宅村",
+    "name_details": {
+      "province": "浙江省",
+      "city": "丽水市",
+      "county": "松阳县"
+    }
+  },
+  "zj_hlgc": {
+    "sessions": [],
+    "totals": {
+      "sequence_count": 0,
+      "image_count": 0,
+      "trajectory_length_m": 0.0,
+      "location": null
+    },
+    "full_name": "黄岭根村",
+    "name_details": {
+      "province": "浙江省",
+      "city": "丽水市",
+      "county": "松阳县"
+    }
+  },
+  "zj_hsc": {
+    "sessions": [
+      {
+        "session_id": "20250923_171346",
+        "sequence_count": 80,
+        "image_count": 246,
+        "trajectory_length_m": 314,
+        "location": {
+          "latitude": 28.364595,
+          "longitude": 119.46079
+        },
+        "start_location": {
+          "latitude": 28.36504,
+          "longitude": 119.46098
+        },
+        "end_location": {
+          "latitude": 28.36462,
+          "longitude": 119.45983666666667
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 80,
+      "image_count": 246,
+      "trajectory_length_m": 314.0,
+      "location": {
+        "latitude": 28.364595,
+        "longitude": 119.46079
+      }
+    },
+    "full_name": "后畲村",
+    "name_details": {
+      "province": "浙江省",
+      "city": "丽水市",
+      "county": "松阳县"
+    }
+  },
+  "zj_hzc": {
+    "sessions": [
+      {
+        "session_id": "20250923_114600",
+        "sequence_count": 105,
+        "image_count": 315,
+        "trajectory_length_m": 401,
+        "location": {
+          "latitude": 28.293279999999996,
+          "longitude": 119.51336833333335
+        },
+        "start_location": {
+          "latitude": 28.293266666666668,
+          "longitude": 119.51339166666666
+        },
+        "end_location": {
+          "latitude": 28.292921666666665,
+          "longitude": 119.51468166666668
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 105,
+      "image_count": 315,
+      "trajectory_length_m": 401.0,
+      "location": {
+        "latitude": 28.293279999999996,
+        "longitude": 119.51336833333335
+      }
+    },
+    "full_name": "横樟村",
+    "name_details": {
+      "province": "浙江省",
+      "city": "丽水市",
+      "county": "松阳县"
+    }
+  },
+  "zj_ndybnchc": {
+    "sessions": [
+      {
+        "session_id": "20250923_153518",
+        "sequence_count": 46,
+        "image_count": 138,
+        "trajectory_length_m": 253,
+        "location": {
+          "latitude": 28.274173333333337,
+          "longitude": 119.45010499999998
+        },
+        "start_location": {
+          "latitude": 28.274329,
+          "longitude": 119.451726
+        },
+        "end_location": {
+          "latitude": 28.27439,
+          "longitude": 119.44981666666666
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 46,
+      "image_count": 138,
+      "trajectory_length_m": 253.0,
+      "location": {
+        "latitude": 28.274173333333337,
+        "longitude": 119.45010499999998
+      }
+    },
+    "full_name": "内大阴百鸟朝凰",
+    "name_details": {
+      "province": "浙江省",
+      "city": "丽水市",
+      "county": "松阳县"
+    }
+  },
+  "zj_ptc": {
+    "sessions": [
+      {
+        "session_id": "20250922_142803",
+        "sequence_count": 240,
+        "image_count": 723,
+        "trajectory_length_m": 612,
+        "location": {
+          "latitude": 28.5307541,
+          "longitude": 119.532911
+        },
+        "start_location": {
+          "latitude": 28.5301481,
+          "longitude": 119.5321376
+        },
+        "end_location": {
+          "latitude": 28.5303516,
+          "longitude": 119.5336565
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 240,
+      "image_count": 723,
+      "trajectory_length_m": 612.0,
+      "location": {
+        "latitude": 28.5307541,
+        "longitude": 119.532911
+      }
+    },
+    "full_name": "平田村",
+    "name_details": {
+      "province": "浙江省",
+      "city": "丽水市",
+      "county": "松阳县"
+    }
+  },
+  "zj_qc": {
+    "sessions": [
+      {
+        "session_id": "20250923_095058",
+        "sequence_count": 452,
+        "image_count": 1356,
+        "trajectory_length_m": 947,
+        "location": {
+          "latitude": 28.3195839,
+          "longitude": 119.5090299
+        },
+        "start_location": {
+          "latitude": 28.3203037,
+          "longitude": 119.5083368
+        },
+        "end_location": {
+          "latitude": 28.3175082,
+          "longitude": 119.509023
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 452,
+      "image_count": 1356,
+      "trajectory_length_m": 947.0,
+      "location": {
+        "latitude": 28.3195839,
+        "longitude": 119.5090299
+      }
+    },
+    "full_name": "桥头村",
+    "name_details": {
+      "province": "浙江省",
+      "city": "丽水市",
+      "county": "松阳县"
+    }
+  },
+  "zj_tcc": {
+    "sessions": [
+      {
+        "session_id": "20250922_154602",
+        "sequence_count": 60,
+        "image_count": 195,
+        "trajectory_length_m": 233,
+        "location": {
+          "latitude": 28.558870000000002,
+          "longitude": 119.51415333333334
+        },
+        "start_location": {
+          "latitude": 28.558350000000004,
+          "longitude": 119.51527333333334
+        },
+        "end_location": {
+          "latitude": 28.559041666666666,
+          "longitude": 119.51319333333335
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 60,
+      "image_count": 195,
+      "trajectory_length_m": 233.0,
+      "location": {
+        "latitude": 28.558870000000002,
+        "longitude": 119.51415333333334
+      }
+    },
+    "full_name": "汤城村",
+    "name_details": {
+      "province": "浙江省",
+      "city": "丽水市",
+      "county": "松阳县"
+    }
+  },
+  "zj_xhsc": {
+    "sessions": [],
+    "totals": {
+      "sequence_count": 0,
+      "image_count": 0,
+      "trajectory_length_m": 0.0,
+      "location": null
+    },
+    "full_name": "小后畲",
+    "name_details": {
+      "province": "浙江省",
+      "city": "丽水市",
+      "county": "松阳县"
+    }
+  },
+  "zj_xkc": {
+    "sessions": [
+      {
+        "session_id": "20250922_112326",
+        "sequence_count": 25,
+        "image_count": 75,
+        "trajectory_length_m": 81,
+        "location": {
+          "latitude": 28.517780000000002,
+          "longitude": 119.51021333333334
+        },
+        "start_location": {
+          "latitude": 28.517353333333336,
+          "longitude": 119.51040666666668
+        },
+        "end_location": {
+          "latitude": 28.517924999999998,
+          "longitude": 119.51021999999999
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 25,
+      "image_count": 75,
+      "trajectory_length_m": 81.0,
+      "location": {
+        "latitude": 28.517780000000002,
+        "longitude": 119.51021333333334
+      }
+    },
+    "full_name": "西坑村",
+    "name_details": {
+      "province": "浙江省",
+      "city": "丽水市",
+      "county": "松阳县"
+    }
+  },
+  "zj_yjtc": {
+    "sessions": [
+      {
+        "session_id": "20250920_111348",
+        "sequence_count": 183,
+        "image_count": 549,
+        "trajectory_length_m": 518,
+        "location": {
+          "latitude": 28.463001666666667,
+          "longitude": 119.54234666666667
+        },
+        "start_location": {
+          "latitude": 28.46401,
+          "longitude": 119.54266333333335
+        },
+        "end_location": {
+          "latitude": 28.46247,
+          "longitude": 119.54272166666667
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 183,
+      "image_count": 549,
+      "trajectory_length_m": 518.0,
+      "location": {
+        "latitude": 28.463001666666667,
+        "longitude": 119.54234666666667
+      }
+    },
+    "full_name": "杨家堂村",
+    "name_details": {
+      "province": "浙江省",
+      "city": "丽水市",
+      "county": "松阳县"
+    }
+  },
+  "zj_ykltc": {
+    "sessions": [],
+    "totals": {
+      "sequence_count": 0,
+      "image_count": 0,
+      "trajectory_length_m": 0.0,
+      "location": null
+    },
+    "full_name": "沿坑岭头村",
+    "name_details": {
+      "province": "浙江省",
+      "city": "丽水市",
+      "county": "松阳县"
+    }
+  },
+  "zj_ytc": {
+    "sessions": [
+      {
+        "session_id": "20250921_102601",
+        "sequence_count": 171,
+        "image_count": 513,
+        "trajectory_length_m": 615,
+        "location": {
+          "latitude": 28.465201666666665,
+          "longitude": 119.55411333333335
+        },
+        "start_location": {
+          "latitude": 28.464875,
+          "longitude": 119.55371166666667
+        },
+        "end_location": {
+          "latitude": 28.465781666666665,
+          "longitude": 119.55478999999998
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 171,
+      "image_count": 513,
+      "trajectory_length_m": 615.0,
+      "location": {
+        "latitude": 28.465201666666665,
+        "longitude": 119.55411333333335
+      }
+    },
+    "full_name": "酉田村",
+    "name_details": {
+      "province": "浙江省",
+      "city": "丽水市",
+      "county": "松阳县"
+    }
+  },
+  "zj_zstc": {
+    "sessions": [
+      {
+        "session_id": "20250921_152156",
+        "sequence_count": 480,
+        "image_count": 1495,
+        "trajectory_length_m": 1124,
+        "location": {
+          "latitude": 28.518163333333337,
+          "longitude": 119.60292166666667
+        },
+        "start_location": {
+          "latitude": 28.51727,
+          "longitude": 119.60359833333332
+        },
+        "end_location": {
+          "latitude": 28.518343333333338,
+          "longitude": 119.60218666666667
+        }
+      }
+    ],
+    "totals": {
+      "sequence_count": 480,
+      "image_count": 1495,
+      "trajectory_length_m": 1124.0,
+      "location": {
+        "latitude": 28.518163333333337,
+        "longitude": 119.60292166666667
+      }
+    },
+    "full_name": "周山头村",
+    "name_details": {
+      "province": "浙江省",
+      "city": "丽水市",
+      "county": "松阳县"
+    }
+  }
+}
