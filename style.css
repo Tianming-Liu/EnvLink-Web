@@ -784,6 +784,35 @@ body.is-session-active .story-block:last-child .story-card {
   -webkit-mask-image: url("./src/img/keyboard_arrow_down_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg");
 }
 
+.session-cta {
+  position: fixed;
+  top: 18%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  padding: 0.9rem 1.8rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  text-align: center;
+  z-index: 20;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: auto;
+}
+
+.session-cta a {
+  color: #ffd66c;
+  margin-left: 0.45rem;
+  text-decoration: underline;
+  white-space: nowrap;
+}
+
+body.is-session-active .session-cta {
+  opacity: 1;
+}
+
 .session-timeline__axis {
   position: relative;
   flex: 1;
