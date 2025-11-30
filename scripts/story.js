@@ -1,17 +1,17 @@
 import { clamp } from "./utils.js";
 
-const LINE_SCROLL_DISTANCE = 1200;
+const LINE_SCROLL_DISTANCE = 800;
 const LINE_HIGHLIGHT_DURATION = 2.5;
-const LINE_RESTORE_DURATION = 0.8;
-const LINE_HIGHLIGHT_STAGGER = 1.4;
-const POST_SCROLL_HOLD = 2;
+const LINE_RESTORE_DURATION = 0.4;
+const LINE_HIGHLIGHT_STAGGER = 2.5;
+const POST_SCROLL_HOLD = 0.65;
 const BLOCK_VIEWPORT_RATIO = 1.05;
 const SESSION_VISIBILITY_THRESHOLD = 0.95;
 const BASE_EASE = "power1.out";
 
 const clampProgress = (value) => clamp(value, 0, 1);
 const TEXT_BASE_COLOR = "#333333";
-const TEXT_HIGHLIGHT_COLOR = "#bbbbbbca";
+const TEXT_HIGHLIGHT_COLOR = "#edededca";
 const ACCENT_BASE_COLOR = "#333333";
 const ACCENT_HIGHLIGHT_COLOR = "#ec38bcca";
 const TEXT_FONT = '"Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif';
