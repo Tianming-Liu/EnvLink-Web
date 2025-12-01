@@ -9,21 +9,21 @@ const SENSOR_GROUPS = [
       "Visual element count",
       "Highly extendable feed",
     ],
-    node: { x: 57, y: 24 },
+    node: { x: 0.57, y: 0.14 },
   },
   {
     id: "ecg",
     label: "ECG",
     description: "Bio-sensing",
     metrics: ["ECG waveform (mV)", "Heart rate (HR)", "Heart rate variability (HRV)"],
-    node: { x: 25, y: 34 },
+    node: { x: 0.12, y: 0.26 },
   },
   {
     id: "light",
     label: "Light",
     description: "Ambient lights",
     metrics: ["Light intensity (Lux)", "UV index"],
-    node: { x: 32, y: 44 },
+    node: { x: 0.21, y: 0.44 },
   },
   {
     id: "air",
@@ -33,14 +33,14 @@ const SENSOR_GROUPS = [
       "TVOC (Total Volatile Organic Compounds)",
       "Estimated eCO₂",
     ],
-    node: { x: 32, y: 56 },
+    node: { x: 0.18, y: 0.61 },
   },
   {
     id: "basic",
     label: "Basic Sensor",
     description: "Microclimate",
     metrics: ["Temperature (°C)", "Humidity (%RH)", "Pressure (hPa)"],
-    node: { x: 34, y: 66 },
+    node: { x: 0.26, y: 0.73 },
   },
 ];
 
@@ -51,12 +51,15 @@ export const initSensorShowcase = () => {
   }
   const rowsRoot = stage.querySelector("[data-sensor-rows]");
   const nodesRoot = stage.querySelector("[data-sensor-nodes]");
-  if (!rowsRoot || !nodesRoot) {
+  const deviceEl = stage.querySelector(".sensor-stage__device");
+  const deviceImg = deviceEl?.querySelector("img");
+  if (!rowsRoot || !nodesRoot || !deviceEl || !deviceImg) {
     return;
   }
 
   const hoverables = [];
   let pointerActiveId = null;
+  const nodeEntries = [];
   const updateHighlightState = () => {
     const activeId = pointerActiveId;
     const targets = stage.querySelectorAll(
@@ -109,13 +112,12 @@ export const initSensorShowcase = () => {
       const nodeDot = document.createElement("button");
       nodeDot.type = "button";
       nodeDot.className = "sensor-node";
-      nodeDot.style.left = `${group.node.x}%`;
-      nodeDot.style.top = `${group.node.y}%`;
       nodeDot.style.transitionDelay = `${0.65 + index * 0.12}s`;
       nodeDot.dataset.sensorNode = group.id;
       nodeDot.setAttribute("aria-label", `${group.label} connector`);
       nodesRoot.appendChild(nodeDot);
       hoverables.push(nodeDot);
+      nodeEntries.push({ element: nodeDot, position: group.node });
     }
   });
 
@@ -147,5 +149,36 @@ export const initSensorShowcase = () => {
     }
   );
   visibilityObserver.observe(stage);
+
+  const updateNodePositions = () => {
+    const deviceRect = deviceEl.getBoundingClientRect();
+    const imageRect = deviceImg.getBoundingClientRect();
+    const offsetX = imageRect.left - deviceRect.left;
+    const offsetY = imageRect.top - deviceRect.top;
+    const { width, height } = imageRect;
+    if (!width || !height) {
+      return;
+    }
+    nodeEntries.forEach(({ element, position }) => {
+      const left = offsetX + position.x * width;
+      const top = offsetY + position.y * height;
+      element.style.left = `${left}px`;
+      element.style.top = `${top}px`;
+    });
+  };
+
+  if (deviceImg.complete) {
+    updateNodePositions();
+  } else {
+    deviceImg.addEventListener("load", updateNodePositions, { once: true });
+  }
+
+  if ("ResizeObserver" in window) {
+    const resizeObserver = new ResizeObserver(() => updateNodePositions());
+    resizeObserver.observe(deviceEl);
+    resizeObserver.observe(deviceImg);
+  } else {
+    window.addEventListener("resize", updateNodePositions);
+  }
 
 };

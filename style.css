@@ -411,7 +411,7 @@ body.is-session-active .story-block:last-child .story-card {
 
 .story-block--sensors {
   position: relative;
-  min-height: 65vh;
+  min-height: 100vh;
   padding: 0;
   display: flex;
   align-items: center;
@@ -430,13 +430,19 @@ body.is-session-active .story-block:last-child .story-card {
 
 .sensor-stage {
   width: min(1200px, 92vw);
-  height: 65vh;
+  height: 50vh;
   margin: 0 auto;
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-  gap: 3vw;
-  padding: 2.6vw;
-  border-radius: 26px;
+  align-items: center;
+  container-type: size;
+  container-name: sensor-stage;
+  --stage-gap: clamp(2vh, 4cqh, 6vh);
+  --stage-padding: clamp(1.8vh, 3.2cqh, 4.6vh);
+  --stage-radius: clamp(1.2vh, 2.4cqh, 3.2vh);
+  gap: var(--stage-gap);
+  padding: var(--stage-padding);
+  border-radius: var(--stage-radius);
   border: 1px solid rgba(42, 23, 23, 0.08);
   background: rgba(4, 4, 8, 0.78);
   box-shadow: 0 35px 85px rgba(0, 0, 0, 0.45);
@@ -444,11 +450,12 @@ body.is-session-active .story-block:last-child .story-card {
 
 .sensor-stage__device {
   position: relative;
-  padding: 1.5vw;
+  padding: clamp(1.2vh, 2.2cqh, 3.6vh);
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
+  overflow: hidden;
   opacity: 0;
   transform: translateX(-8%);
   transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.9s ease;
@@ -460,9 +467,8 @@ body.is-session-active .story-block:last-child .story-card {
 }
 
 .sensor-stage__device img {
-  width: 35vw;
+  width: min(65cqh, 100%);
   height: auto;
-  max-height: 100%;
   object-fit: contain;
   filter: invert(1) brightness(1.35) contrast(1.1);
   mix-blend-mode: screen;
@@ -477,10 +483,10 @@ body.is-session-active .story-block:last-child .story-card {
 
 .sensor-node {
   position: absolute;
-  width: 18px;
-  height: 18px;
+  width: clamp(0.9cqh, 1.4cqmin, 1.8cqh);
+  aspect-ratio: 1 / 1;
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.85);
+  border: max(0.08vh, 0.12cqh) solid rgba(255, 255, 255, 0.85);
   background: rgba(222, 222, 222, 0.55);
   transform: translate(-50%, -50%) scale(0.2);
   opacity: 0;
@@ -504,47 +510,40 @@ body.is-session-active .story-block:last-child .story-card {
 .sensor-stage__panel {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: clamp(1.2vh, 2.4cqh, 2.6vh);
   text-align: left;
   justify-content: flex-start;
 }
 
 .sensor-panel__header h3 {
   margin: 0.35rem 0 0.25rem;
-  font-size: 1.8rem;
+  font-size: clamp(2vh, 3.4cqh, 3.8vh);
   color: var(--tone-text-base);
 }
 
 .sensor-panel__header p {
   margin: 0;
   color: rgba(255, 255, 255, 0.75);
-  font-size: 0.65rem;
+  font-size: clamp(1.1vh, 2.1cqh, 1.8vh);
   line-height: 1.6;
-}
-
-.sensor-panel__eyebrow {
-  text-transform: uppercase;
-  font-size: 0.65rem;
-  letter-spacing: 0.05em;
-  color: rgba(255, 255, 255, 0.6);
 }
 
 .sensor-panel__rows {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: clamp(1vh, 2.1cqh, 2.2vh);
 }
 
 .sensor-panel__row {
   display: grid;
   grid-template-columns: 0.75fr 1fr;
-  gap: 1.6rem;
+  gap: clamp(1.4vh, 2.6cqh, 3vh);
   align-items: flex-start;
 }
 
 .sensor-type {
-  border-left: 3px solid rgba(255, 255, 255, 0.2);
-  padding-left: 0.85rem;
+  border-left: max(0.25vh, 0.4cqh) solid rgba(255, 255, 255, 0.2);
+  padding-left: clamp(0.8vh, 1.4cqh, 1.8vh);
   opacity: 0;
   transform: translateX(10%);
   transition: opacity 0.45s ease, transform 0.45s ease;
@@ -561,7 +560,7 @@ body.is-session-active .story-block:last-child .story-card {
 }
 
 .sensor-type strong {
-  font-size: 1.1rem;
+  font-size: clamp(1.4vh, 2.4cqh, 2.8vh);
   letter-spacing: 0.08em;
   color: rgba(255, 255, 255, 0.9);
 }
@@ -569,16 +568,16 @@ body.is-session-active .story-block:last-child .story-card {
 .sensor-type span {
   display: block;
   margin-top: 0.15rem;
-  font-size: 0.65rem;
+  font-size: clamp(0.85vh, 1.2cqh, 1.3vh);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.55);
 }
 
 .sensor-metric-block {
-  border: 0.5px solid rgba(255, 255, 255, 0.12);
-  border-radius: 8px;
-  padding: 0.65rem 0.85rem;
+  border: max(0.08vh, 0.12cqh) solid rgba(255, 255, 255, 0.12);
+  border-radius: clamp(0.8vh, 1.6cqh, 2vh);
+  padding: clamp(0.9vh, 1.4cqh, 1.6vh) clamp(1vh, 1.8cqh, 2vh);
   opacity: 0;
   transform: translateX(12%);
   transition: opacity 0.45s ease, transform 0.45s ease;
@@ -595,14 +594,14 @@ body.is-session-active .story-block:last-child .story-card {
 }
 
 .sensor-group__metric {
-  font-size: 0.65rem;
+  font-size: clamp(0.85vh, 1.2cqh, 1.3vh);
   color: rgba(255, 255, 255, 0.65);
   letter-spacing: 0.05em;
   transition: color 0.3s ease;
 }
 
 .sensor-panel__hint {
-  font-size: 0.75rem;
+  font-size: clamp(0.9vh, 1.4cqh, 1.4vh);
   text-transform: uppercase;
   letter-spacing: 0.3em;
   color: rgba(255, 255, 255, 0.45);
@@ -625,7 +624,7 @@ body.is-session-active .story-block:last-child .story-card {
   }
   .sensor-stage__device {
     order: 2;
-    padding: 6vw 8vw;
+    padding: clamp(1.5vh, 3.4cqh, 4.2vh);
   }
   .sensor-panel__row {
     grid-template-columns: 1fr;
