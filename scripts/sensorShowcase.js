@@ -44,6 +44,16 @@ const SENSOR_GROUPS = [
   },
 ];
 
+const GALLERY_ITEMS = [
+
+  { type: "image", src: "DSC05239.jpg" },
+  { type: "video", src: "xz_lz.mov" },
+  { type: "video", src: "xj.mov" },
+  { type: "image", src: "DSC05237.jpg" },
+  { type: "image", src: "DSC05237.jpg" },
+  { type: "image", src: "DSC05238.jpg" },
+];
+
 export const initSensorShowcase = () => {
   const stage = document.getElementById("sensorShowcase");
   if (!stage) {
@@ -51,9 +61,10 @@ export const initSensorShowcase = () => {
   }
   const rowsRoot = stage.querySelector("[data-sensor-rows]");
   const nodesRoot = stage.querySelector("[data-sensor-nodes]");
+  const galleryRoot = stage.querySelector("[data-sensor-gallery]");
   const deviceEl = stage.querySelector(".sensor-stage__device");
   const deviceImg = deviceEl?.querySelector("img");
-  if (!rowsRoot || !nodesRoot || !deviceEl || !deviceImg) {
+  if (!rowsRoot || !nodesRoot || !galleryRoot || !deviceEl || !deviceImg) {
     return;
   }
 
@@ -92,13 +103,13 @@ export const initSensorShowcase = () => {
 
     const metricBlock = document.createElement("div");
     metricBlock.className = "sensor-metric-block";
-    metricBlock.dataset.sensorMetric = group.id;
+    metricBlock.dataset.sensorGroup = group.id;
     const metricList = document.createElement("ul");
     metricList.className = "sensor-metric-block__list";
     group.metrics.forEach((metric) => {
       const item = document.createElement("li");
       item.className = "sensor-group__metric";
-      item.dataset.sensorMetric = group.id;
+      item.dataset.sensorGroup = group.id;
       item.textContent = metric;
       metricList.appendChild(item);
       hoverables.push(item);
@@ -134,6 +145,75 @@ export const initSensorShowcase = () => {
     element.addEventListener("focus", () => setPointerActive(id));
     element.addEventListener("blur", () => setPointerActive(null));
   });
+
+  GALLERY_ITEMS.forEach((galleryItem, index) => {
+    const item = document.createElement("div");
+    item.className = "sensor-gallery__item";
+    item.style.opacity = "0";
+    item.style.transform = "translateX(8%)";
+
+    if (galleryItem.type === "image") {
+      const img = document.createElement("img");
+      img.src = `./src/img/${galleryItem.src}`;
+      img.alt = `Sensing device image ${index + 1}`;
+      img.loading = "lazy";
+      item.appendChild(img);
+    } else if (galleryItem.type === "video") {
+      const video = document.createElement("video");
+      video.src = `./src/img/${galleryItem.src}`;
+      video.muted = true;
+      video.loop = true;
+      video.playsInline = true;
+      video.preload = "metadata";
+
+      video.addEventListener("mouseenter", () => {
+        video.play().catch(() => { });
+      });
+
+      video.addEventListener("mouseleave", () => {
+        video.pause();
+      });
+
+      item.appendChild(video);
+    }
+
+    galleryRoot.appendChild(item);
+
+    setTimeout(() => {
+      item.style.transition = "opacity 0.45s ease, transform 0.45s ease";
+      item.style.opacity = "1";
+      item.style.transform = "translateX(0)";
+
+      setTimeout(() => {
+        item.style.transition = "";
+      }, 450);
+    }, 400 + index * 80);
+  });
+
+  const galleryContainer = stage.querySelector(".sensor-stage__gallery");
+  const updateScrollGradients = () => {
+    const scrollTop = galleryRoot.scrollTop;
+    const scrollHeight = galleryRoot.scrollHeight;
+    const clientHeight = galleryRoot.clientHeight;
+    const scrollBottom = scrollHeight - scrollTop - clientHeight;
+
+    const threshold = 10;
+
+    if (scrollTop > threshold) {
+      galleryContainer.classList.add("has-scroll-top");
+    } else {
+      galleryContainer.classList.remove("has-scroll-top");
+    }
+
+    if (scrollBottom > threshold) {
+      galleryContainer.classList.add("has-scroll-bottom");
+    } else {
+      galleryContainer.classList.remove("has-scroll-bottom");
+    }
+  };
+
+  galleryRoot.addEventListener("scroll", updateScrollGradients);
+  setTimeout(updateScrollGradients, 100);
 
   const visibilityObserver = new IntersectionObserver(
     (entries) => {

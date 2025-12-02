@@ -1,13 +1,15 @@
 import { clamp } from "./utils.js";
 
-const LINE_SCROLL_DISTANCE = 800;
+const LINE_SCROLL_DISTANCE = 500;
 const LINE_HIGHLIGHT_DURATION = 2.5;
 const LINE_RESTORE_DURATION = 0.4;
 const LINE_HIGHLIGHT_STAGGER = 2.5;
-const POST_SCROLL_HOLD = 0.65;
+const POST_SCROLL_HOLD = 0.4;
 const BLOCK_VIEWPORT_RATIO = 1.05;
 const SESSION_VISIBILITY_THRESHOLD = 0.95;
 const BASE_EASE = "power1.out";
+// Slightly damp the sensor pin adjustment so we don't overshoot on tall viewports.
+const SENSOR_PIN_OFFSET_FRICTION = 0.5;
 
 const clampProgress = (value) => clamp(value, 0, 1);
 const TEXT_BASE_COLOR = "#333333";
@@ -22,6 +24,21 @@ const applyBlockHeights = (blocks) => {
   blocks.forEach((block) => {
     block.style.minHeight = `${minHeight}px`;
   });
+};
+
+const getSensorBlockTriggerStart = (block) => {
+  if (!block) {
+    return "center center";
+  }
+  const viewportHeight = window.innerHeight || 1;
+  const blockHeight = block.getBoundingClientRect()?.height || viewportHeight;
+  const offset = ((blockHeight - viewportHeight) / 2) * SENSOR_PIN_OFFSET_FRICTION;
+  const roundedOffset = Math.round(offset);
+  if (!roundedOffset) {
+    return "center center";
+  }
+  const operator = roundedOffset > 0 ? "+=" : "-=";
+  return `center center${operator}${Math.abs(roundedOffset)}`;
 };
 
 const setCardState = (card, progress) => {
@@ -40,10 +57,15 @@ export const setupStoryTimeline = () => {
   const bodyEl = document.body;
   const storyBlocks = Array.from(document.querySelectorAll(".story-block"));
   const hudRefs = {
+    // Project Name HUD elements
     left: document.getElementById("hudLeft"),
+    // Institution HUD elements
     right: document.getElementById("hudRight"),
+    // Bottom scroll hint
     hint: document.getElementById("scrollHint"),
+    // Batch legend
     legend: document.getElementById("batchLegend"),
+    // Intro overlay (Title, Subtitle)
     intro: document.getElementById("introOverlay"),
   };
 
@@ -88,16 +110,22 @@ export const setupStoryTimeline = () => {
   };
 
   const buildBlockTimeline = (block, index, totalBlocks, gsapInstance, ScrollTrigger) => {
+    // Get Story Card Element Which works as Box Decorator
     const card = block.querySelector(".story-card");
+    // Check if it's a sensor block
     const isSensorBlock = block.classList.contains("story-block--sensors");
+    // Get all lines within the block, or empty array for sensor blocks
     const items = isSensorBlock
       ? []
       : Array.from(block.querySelectorAll("[data-story-item]"));
+    // Calculate scroll distance based on number of items, "1" for sensor blocks
     const itemCount = Math.max(items.length || 1, 1);
     const scrollDistance = (itemCount || 1) * LINE_SCROLL_DISTANCE;
     const highlightDuration = LINE_HIGHLIGHT_DURATION;
+    // Check if it's the final block
     const isFinalBlock = index === totalBlocks - 1;
 
+    //Set Base Visual Properties
     if (items.length) {
       const baseProps = isSensorBlock
         ? { opacity: 0.35, scale: 1 }
@@ -114,11 +142,13 @@ export const setupStoryTimeline = () => {
     const timeline = gsapInstance.timeline({
       scrollTrigger: {
         trigger: block,
-        start: "center center",
+        start: () =>
+          isSensorBlock ? getSensorBlockTriggerStart(block) : "center center",
         end: () => `+=${scrollDistance}`,
         pin: true,
         pinSpacing: true,
-        scrub: 1,
+        scrub: 0.5,
+        anticipatePin: 1.5,
         invalidateOnRefresh: true,
         onToggle: ({ isActive }) => {
           block.classList.toggle("is-active", isActive);
@@ -199,7 +229,7 @@ export const setupStoryTimeline = () => {
       const gsapInstance = window?.gsap;
       const ScrollTrigger = window?.ScrollTrigger;
       if (!storyEl || !gsapInstance || !ScrollTrigger) {
-        console.warn("GSAP ScrollTrigger 未加载，无法初始化叙事滚动。");
+        console.warn("GSAP ScrollTrigger not loaded, unable to initialize story scroll.");
         return;
       }
       gsapInstance.registerPlugin(ScrollTrigger);
