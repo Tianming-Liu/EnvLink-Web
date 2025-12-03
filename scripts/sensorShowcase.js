@@ -31,7 +31,7 @@ const SENSOR_GROUPS = [
     description: "Atmospheric chemistry",
     metrics: [
       "TVOC (Total Volatile Organic Compounds)",
-      "Estimated eCO₂",
+      "Estimated CO₂",
     ],
     node: { x: 0.18, y: 0.61 },
   },

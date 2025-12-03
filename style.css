@@ -320,7 +320,7 @@ body {
 
 .story {
   position: relative;
-  width: min(940px, 92%);
+  width: min(960px, 92%);
   margin: 0 auto;
   padding: 15vh 24px 35vh;
   display: flex;
@@ -429,16 +429,16 @@ body.is-session-active .story-block:last-child .story-card {
 }
 
 .sensor-stage {
-  width: 85vw;
+  width: 100vw;
   height: 55vh;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr) minmax(0, 0.6fr);
+  grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.2fr) minmax(0, 0.8fr);
   align-items: center;
   container-type: size;
   container-name: sensor-stage;
-  --stage-gap: clamp(2vh, 4cqh, 6vh);
-  --stage-padding: clamp(1.8vh, 3.2cqh, 4.6vh);
+  --stage-gap: clamp(2vh, 3cqh, 4vh);
+  --stage-padding: clamp(1vh, 1cqh, 4vh);
   --stage-radius: clamp(1.2vh, 2.4cqh, 3.2vh);
   gap: var(--stage-gap);
   padding: var(--stage-padding);
