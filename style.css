@@ -10,7 +10,7 @@
   --tone-highlight: rgba(236, 56, 188,1);
   --tone-highlight-soft: #c5c5c5;
   --tone-highlight-glow: rgba(236, 56, 188,3);
-  --tone-accent-soft: rgba(236, 56, 188,0.2);
+  --tone-accent-soft: rgba(229, 229, 229, 0.2);
 }
 
 :root,
@@ -48,6 +48,21 @@ body {
   inset: 0;
   z-index: 1;
   pointer-events: none;
+}
+
+/* Session 阶段启用地图交互 */
+#app.session-active {
+  pointer-events: auto !important;
+}
+
+/* Mapbox 自身的 canvas 可以接收事件 */
+#app.session-active canvas.mapboxgl-canvas {
+  pointer-events: auto !important;
+}
+
+/* deck.gl 覆盖层的 canvas 需要穿透，让事件到达 Mapbox */
+#app.session-active canvas#deckgl-overlay {
+  pointer-events: none !important;
 }
 
 /* ==========================================================================
@@ -173,14 +188,69 @@ body {
   }
 }
 
+/* Back to Top Hint (Session 阶段显示) */
+.back-to-top-hint {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--tone-highlight-soft);
+  font-size: 0.65rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  animation: hint-bounce-up 1.4s ease-in-out infinite;
+  z-index: 1000;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.back-to-top-hint.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.back-to-top-hint__arrow {
+  width: 12px;
+  height: 12px;
+  border-left: 3px solid var(--tone-highlight-soft);
+  border-top: 3px solid var(--tone-highlight-soft);
+  transform: rotate(45deg);
+}
+
+.back-to-top-hint:hover {
+  color: var(--tone-accent);
+}
+
+.back-to-top-hint:hover .back-to-top-hint__arrow {
+  border-left-color: var(--tone-accent);
+  border-top-color: var(--tone-accent);
+}
+
+@keyframes hint-bounce-up {
+  0%,
+  100% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, -8px);
+  }
+}
+
 /* ==========================================================================
    Batch Legend
    ========================================================================== */
 .batch-legend {
   position: fixed;
-  right: 7.5vw;
-  bottom: 10vh;
-  background: rgba(0, 0, 0, 0.8);
+  right: 3vw;
+  bottom: 3vh;
+  padding:0.8rem 0.6rem;
+  background: rgba(0, 0, 0, 0.1);
   pointer-events: none;
   z-index: 3;
   opacity: 0;
@@ -208,11 +278,11 @@ body {
 }
 
 .batch-legend__hint {
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   font-weight: 300;
   color: var(--tone-text-base);
   margin-bottom: 0.8rem;
-  margin-left: 0.6rem;
+  margin-left: 0.8rem;
 }
 
 .batch-legend__items {
@@ -226,7 +296,7 @@ body {
   display: grid;
   grid-template-columns: 40px auto;
   align-items: center;
-  gap: 0.1rem;
+  gap: 0.05rem;
   font-size: 0.6rem;
   color: var(--tone-text-muted);
   transition: color 0.4s ease;
@@ -264,12 +334,12 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding-top: 13vh;
+  padding-top: 11vh;
   align-items: center;
   pointer-events: none;
   color: var(--tone-text-base);
   text-align: center;
-  gap: 50vh;
+  gap: 52vh;
   z-index: 2;
   opacity: 0;
   transition: opacity 0.8s ease;
@@ -287,7 +357,6 @@ body {
   width: 1100px;
   padding: 24px 28px;
   border-radius: 16px;
-  background: rgba(2, 2, 8, 0.15);
 }
 
 .intro-card__label {
@@ -320,7 +389,7 @@ body {
 
 .story {
   position: relative;
-  width: min(960px, 92%);
+  width: 60%;
   margin: 0 auto;
   padding: 15vh 24px 35vh;
   display: flex;
@@ -337,6 +406,10 @@ body {
   pointer-events: none;
 }
 
+.story.is-session-active {
+  pointer-events: none; /* Session 阶段让鼠标事件穿透到地图 */
+}
+
 .story-block {
   position: relative;
   width: 100%;
@@ -348,7 +421,7 @@ body {
 }
 
 .story-card {
-  width: min(850px, 90%);
+  width: 100%;
   margin: 0 auto;
   padding: 24px 24px;
   display: flex;
@@ -359,7 +432,7 @@ body {
   text-align: center;
   opacity: 0.05;
   transform: translateY(32px) scale(0.98);
-  background: rgba(32, 32, 32, 0.45);
+  background: rgba(0, 0, 0, 0.5);
   border-radius: 3px;
   border: 0.4px solid rgba(255, 255, 255, 0.08);
 }
@@ -397,7 +470,7 @@ body.is-session-active .story-block:last-child .story-card {
 .story-line {
   --accent-color: var(--tone-text-dim);
   display: block;
-  font-size: 1.1vw;
+  font-size: 2vh;
   line-height: 1.4;
   color: var(--tone-text-dim);
   font-weight: 500;
@@ -406,7 +479,7 @@ body.is-session-active .story-block:last-child .story-card {
 .story-line .accent {
   color: var(--accent-color);
   letter-spacing: 0.04em;
-  font-weight: var(--accent-weight, 400);
+  font-weight: var(--accent-weight, 600);
 }
 
 .story-block--sensors {
@@ -443,7 +516,7 @@ body.is-session-active .story-block:last-child .story-card {
   gap: var(--stage-gap);
   padding: var(--stage-padding);
   border-radius: var(--stage-radius);
-  border: 1px solid rgba(42, 23, 23, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(4, 4, 8, 0.78);
   box-shadow: 0 35px 85px rgba(0, 0, 0, 0.45);
   opacity: 0;
@@ -478,12 +551,11 @@ body.is-session-active .story-block:last-child .story-card {
 }
 
 .sensor-stage__device img {
-  width: min(65cqh, 100%);
+  width: 100%;
   height: auto;
+  padding-left: 24px;
   object-fit: contain;
-  filter: invert(1) brightness(1.35) contrast(1.1);
-  mix-blend-mode: screen;
-  opacity: 0.7;
+  opacity: 0.75;
   display: block;
 }
 
@@ -605,7 +677,7 @@ body.is-session-active .story-block:last-child .story-card {
 }
 
 .sensor-group__metric {
-  font-size: 1.1vh;
+  font-size: 1vh;
   color: rgba(255, 255, 255, 0.65);
   letter-spacing: 0.05em;
   transition: color 0.3s ease;
@@ -622,7 +694,7 @@ body.is-session-active .story-block:last-child .story-card {
 .sensor-type.is-hover,
 .sensor-group__metric.is-hover,
 .sensor-metric-block.is-hover {
-  color: #fdeff9;
+  color: #ffffff;
   border-color: var(--tone-highlight);
   opacity: 1;
   transform: translateX(0) scale(1);
@@ -801,7 +873,7 @@ body.is-session-active .story-block:last-child .story-card {
 
 .session-overlay.is-active {
   opacity: 1;
-  pointer-events: auto;
+  pointer-events: none; /* 保持父容器穿透，让中间的地图可以接收事件 */
   visibility: visible;
   transform: translate(-50%, -50%) scale(1);
 }
@@ -937,16 +1009,20 @@ body.is-session-active .story-block:last-child .story-card {
   left: 50%;
   transform: translate(-50%, -50%);
   background: rgba(0, 0, 0, 0.35);
-  color: #fff;
-  padding: 0.9rem 1.8rem;
-  border-radius: 999px;
-  font-size: 0.75rem;
+  color: #d8d8d8;
+  padding: 0.2rem 1.8rem;
+  font-size: 0.7rem;
   letter-spacing: 0.01em;
   text-align: center;
   z-index: 20;
   opacity: 0;
   transition: opacity 0.35s ease;
-  pointer-events: auto;
+  pointer-events: none; /* 默认不阻挡地图交互 */
+}
+
+body.is-session-active .session-cta {
+  opacity: 1;
+  pointer-events: auto; /* Session 阶段启用按钮点击 */
 }
 
 .session-cta span {
@@ -1136,8 +1212,13 @@ body.is-session-active .session-cta {
   background: rgba(12, 12, 12, 0.15);
   opacity: 1;
   transform: translateY(0);
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
   text-align: right;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.session-entry:active {
+  transform: scale(0.98);
 }
 
 .session-entry__name {
@@ -1181,10 +1262,10 @@ body.is-session-active .session-cta {
 }
 
 .session-entry {
-  border: 0.1px solid transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   width: 100%;
   box-sizing: border-box;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 .session-entry.is-hover {
@@ -1232,9 +1313,9 @@ body.is-session-active .session-cta {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
-  font-weight: 400;
-  letter-spacing: 0.05em;
+  font-size: 1rem;
+  font-weight: 150;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   background: rgba(0, 0, 0, 0.85);
   transition: opacity 0.35s ease;

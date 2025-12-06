@@ -185,6 +185,19 @@ export const createSessionTimeline = () => {
       setHover(null);
       dispatchHover(null);
     });
+    point.addEventListener("click", () => {
+      if (entry?.coordinates) {
+        window.dispatchEvent(
+          new CustomEvent("envlink:click-session", {
+            detail: {
+              id: entry.id,
+              coordinates: entry.coordinates,
+              name: entry.name,
+            },
+          })
+        );
+      }
+    });
     pointMap.set(entry.id, point);
     pointsContainer.appendChild(point);
     point.style.opacity = "0";

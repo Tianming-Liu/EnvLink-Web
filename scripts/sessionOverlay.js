@@ -252,6 +252,21 @@ export const createSessionOverlay = () => {
         updateCardHover(null);
         emitHover(null);
       });
+      card.addEventListener("click", () => {
+        if (!entry.coordinates || entry.coordinates.length !== 2) {
+          console.warn("Cannot fly to session: invalid coordinates", entry.id);
+          return;
+        }
+        window.dispatchEvent(
+          new CustomEvent("envlink:click-session", {
+            detail: {
+              id: entry.id,
+              coordinates: entry.coordinates,
+              name: entry.name,
+            },
+          })
+        );
+      });
       card.dataset.hoverBound = "1";
     }
     cardMap.set(entry.id, card);

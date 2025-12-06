@@ -37,9 +37,12 @@
     Scroll
     <span class="scroll-hint__arrow"></span>
   </div>
+  <div class="back-to-top-hint" id="backToTopHint">
+    <span class="back-to-top-hint__arrow"></span>
+    Back to Landing Page
+  </div>
   <div class="batch-legend" id="batchLegend">
-    <div class="batch-legend__title">Batch</div>
-    <div class="batch-legend__hint">Year admitted to national list</div>
+    <div class="batch-legend__hint">Year Listed Nationally</div>
     <div class="batch-legend__items" id="legendItems"></div>
   </div>
   <div class="intro-overlay" id="introOverlay">
@@ -117,7 +120,7 @@
     <section class="story-block story-block--sensors" id="sensorShowcase">
       <div class="sensor-stage">
         <div class="sensor-stage__device">
-          <img alt="EnvLink sensing kit" loading="lazy" src="./src/img/sensor_line.jpg" />
+          <img alt="EnvLink sensing kit" loading="lazy" src="./src/img/sensor_line.png" />
           <div class="sensor-stage__nodes" data-sensor-nodes></div>
         </div>
         <div class="sensor-stage__panel">
@@ -147,6 +150,12 @@
       </div>
     </section>
   </main>
+  <!-- 环境配置（必须最先加载） -->
+  <script src="./config/env.config.js"></script>
+  <!-- Mapbox GL JS -->
+  <link href="https://api.mapbox.com/mapbox-gl-js/v3.16.0/mapbox-gl.css" rel="stylesheet">
+  <script src="https://api.mapbox.com/mapbox-gl-js/v3.16.0/mapbox-gl.js"></script>
+  <!-- deck.gl -->
   <script src="https://unpkg.com/deck.gl@8.9.36/dist.min.js"></script>
   <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
   <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>

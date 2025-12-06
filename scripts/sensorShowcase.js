@@ -30,7 +30,7 @@ const SENSOR_GROUPS = [
     label: "Air Quality",
     description: "Atmospheric chemistry",
     metrics: [
-      "TVOC (Total Volatile Organic Compounds)",
+      "Total Volatile Organic Compounds",
       "Estimated CO₂",
     ],
     node: { x: 0.18, y: 0.61 },
@@ -49,7 +49,6 @@ const GALLERY_ITEMS = [
   { type: "image", src: "DSC05239.jpg" },
   { type: "video", src: "xz_lz.mov" },
   { type: "video", src: "xj.mov" },
-  { type: "image", src: "DSC05237.jpg" },
   { type: "image", src: "DSC05237.jpg" },
   { type: "image", src: "DSC05238.jpg" },
 ];

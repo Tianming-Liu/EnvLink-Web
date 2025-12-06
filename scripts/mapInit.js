@@ -1,21 +1,26 @@
 import { fetchJSON, flattenCoords } from "./utils.js";
 import {
   POINTS_URL,
-  COUNTRY_BOUNDARY_URL,
-  PROVINCE_BOUNDARY_URL,
   BATCH_REVEAL_DURATION,
   FADE_IN_DURATION,
   BATCH_LEVELS,
   SESSION_SUMMARY_URL,
   SESSION_REVEAL_INTERVAL,
   SESSION_POINT_COLOR_FADE,
+  SESSION_AUTO_FLY_ZOOM,
+  SESSION_CLICK_FLY_ZOOM,
+  SESSION_FLY_TO_DURATION,
+  MAPBOX_STYLE_URL,
 } from "./constants.js";
+import {
+  initMapboxBase,
+  enableMapInteraction,
+  disableMapInteraction,
+} from "./mapboxConfig.js";
 import {
   preparePoints,
   createPointLayer,
   createPointHaloLayer,
-  createCountryLayer,
-  createProvinceLayer,
   createSessionHighlightLayer,
 } from "./mapLayers.js";
 import { setupStoryTimeline } from "./story.js";
@@ -30,8 +35,7 @@ const hideStatus = () => {
   if (!statusEl) {
     return;
   }
-  statusEl.classList.add("hidden");
-  setTimeout(() => statusEl.remove(), 500);
+  statusEl.remove(); // 立即移除，确保容器干净
 };
 
 const showError = (message) => {
@@ -86,10 +90,20 @@ const buildViewState = (bounds) => {
 
 export const initApp = async () => {
   try {
-    const [pointGeojson, countryBoundaries, provinceBoundaries, summaryData] = await Promise.all([
+    // 验证 Mapbox 支持
+    if (!window.mapboxgl) {
+      showError("地图库加载失败");
+      return;
+    }
+
+    if (!mapboxgl.supported()) {
+      showError("您的浏览器不支持 WebGL，请更新浏览器");
+      return;
+    }
+
+    // 只加载 deck.gl 需要的数据，边界数据由 Mapbox Tileset 提供
+    const [pointGeojson, summaryData] = await Promise.all([
       fetchJSON(POINTS_URL),
-      fetchJSON(COUNTRY_BOUNDARY_URL),
-      fetchJSON(PROVINCE_BOUNDARY_URL),
       fetchJSON(SESSION_SUMMARY_URL),
     ]);
     const processedPoints = preparePoints(pointGeojson);
@@ -104,21 +118,29 @@ export const initApp = async () => {
     let sessionAnimationStartTs = 0;
     let sessionRenderActive = false;
 
-    const deckgl = new deck.DeckGL({
-      container: appEl,
-      controller: false,
-      initialViewState,
-      parameters: {
-        clearColor: [0, 0, 0, 0],
-      },
-      layers: [],
-    });
-
-    const countryLayer = createCountryLayer(countryBoundaries);
-    const provinceLayer = createProvinceLayer(provinceBoundaries);
+    // 初始化 Mapbox 底图前先清理容器
     hideStatus();
 
-    const storyTimeline = setupStoryTimeline();
+    // 初始化 Mapbox 底图
+    const map = initMapboxBase(appEl, initialViewState, MAPBOX_STYLE_URL);
+
+    if (!map) {
+      showError("Mapbox 初始化失败，请检查配置");
+      return;
+    }
+
+    let deckOverlay = null;
+
+    // 等待 Mapbox 样式加载完成
+    map.on('load', () => {
+      // 创建 deck.gl overlay
+      deckOverlay = new deck.MapboxOverlay({
+        layers: []
+      });
+
+      map.addControl(deckOverlay);
+
+      const storyTimeline = setupStoryTimeline();
     storyTimeline.initStory();
     storyTimeline.revealStory();
     const legend = document.getElementById("batchLegend");
@@ -129,16 +151,69 @@ export const initApp = async () => {
     sessionTimeline.render(sessionEntries, 0);
     let lastOverlayCount = 0;
     let lastTimelineCount = 0;
+    let lastFlyToSessionOrder = -1; // 跟踪上次飞行到的 session
+
+    // 获取返回顶部提示元素
+    const backToTopHint = document.getElementById("backToTopHint");
+
+    // 记录进入 Session 之前的滚动位置
+    let scrollPositionBeforeSession = 0;
+
+    // 添加返回按钮点击事件
+    if (backToTopHint) {
+      backToTopHint.addEventListener("click", () => {
+        // 滚动回进入 Session 之前的位置
+        window.scrollTo({
+          top: scrollPositionBeforeSession,
+          behavior: "smooth"
+        });
+      });
+    }
+
+
     window.addEventListener("envlink:session-start", () => {
       if (!sessionAnimationStarted) {
         sessionAnimationStarted = true;
         sessionAnimationStartTs = performance.now();
       }
     });
+
     window.addEventListener("envlink:session-visibility", (event) => {
-      sessionRenderActive = Boolean(event?.detail?.visible);
-      if (!sessionRenderActive) {
+      const sessionActive = Boolean(event?.detail?.visible);
+      sessionRenderActive = sessionActive;
+
+      if (sessionActive) {
+        // 记录当前滚动位置（进入 Session 之前）
+        scrollPositionBeforeSession = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+
+        // Session 阶段：启用地图交互
+        enableMapInteraction(map, initialViewState.zoom);
+
+        // 启用地图容器的鼠标事件（移除 pointer-events: none）
+        appEl.classList.add("session-active");
+
+        // 锁定页面滚动（防止与地图缩放冲突）
+        document.body.style.overflow = "hidden";
+
+        // 显示返回按钮
+        if (backToTopHint) {
+          backToTopHint.classList.add("is-visible");
+        }
+      } else {
+        // 非 Session 阶段：禁用交互并重置视角
+        disableMapInteraction(map, initialViewState);
         sessionOverlay.hide();
+
+        // 禁用地图容器的鼠标事件（恢复 pointer-events: none）
+        appEl.classList.remove("session-active");
+
+        // 解锁页面滚动
+        document.body.style.overflow = "";
+
+        // 隐藏返回按钮
+        if (backToTopHint) {
+          backToTopHint.classList.remove("is-visible");
+        }
       }
     });
     let hoveredSessionId = null;
@@ -146,6 +221,30 @@ export const initApp = async () => {
       hoveredSessionId = event?.detail?.id || null;
       sessionOverlay.setHover(hoveredSessionId);
       sessionTimeline.setHover(hoveredSessionId);
+    });
+
+    window.addEventListener("envlink:click-session", (event) => {
+      const { id, coordinates, name } = event?.detail || {};
+
+      if (!coordinates || !Array.isArray(coordinates) || coordinates.length !== 2) {
+        console.warn("Invalid coordinates for click-session event:", id);
+        return;
+      }
+
+      console.log(`Flying to session: ${name || id}`, coordinates);
+
+      map.flyTo({
+        center: coordinates,
+        zoom: SESSION_CLICK_FLY_ZOOM,
+        duration: SESSION_FLY_TO_DURATION,
+        essential: true,
+      });
+
+      window.dispatchEvent(
+        new CustomEvent("envlink:hover-session", {
+          detail: { id },
+        })
+      );
     });
 
     const startTs = performance.now();
@@ -176,19 +275,24 @@ export const initApp = async () => {
           ? SESSION_POINT_COLOR_FADE
           : 1;
 
+      // 获取当前地图缩放级别用于动态调整点大小
+      const currentZoom = map.getZoom();
+
       const pointLayer = createPointLayer(
         processedPoints,
         elapsed,
         appearEnd,
-        shouldFadePoints
+        shouldFadePoints,
+        currentZoom
       );
       const haloLayer = createPointHaloLayer(
         processedPoints,
         elapsed,
         appearEnd,
-        shouldFadePoints
+        shouldFadePoints,
+        currentZoom
       );
-      const layers = [countryLayer, provinceLayer, haloLayer, pointLayer];
+      const layers = [haloLayer, pointLayer];
 
       if (sessionRenderActive && sessionVisibleCount > 0) {
         const visibleSessions = sessionEntries.slice(0, sessionVisibleCount);
@@ -196,8 +300,21 @@ export const initApp = async () => {
         const sessionLayer = createSessionHighlightLayer(
           visibleSessions,
           currentEntry.order,
-          hoveredSessionId
+          hoveredSessionId,
+          currentZoom
         );
+
+        // 当新的 session 出现时，飞行到该点
+        if (currentEntry.order !== lastFlyToSessionOrder && currentEntry.coordinates) {
+          map.flyTo({
+            center: currentEntry.coordinates,
+            zoom: SESSION_AUTO_FLY_ZOOM,
+            duration: SESSION_FLY_TO_DURATION,
+            essential: true
+          });
+          lastFlyToSessionOrder = currentEntry.order;
+        }
+
         if (sessionVisibleCount !== lastOverlayCount) {
           sessionOverlay.render(visibleSessions);
           lastOverlayCount = sessionVisibleCount;
@@ -216,15 +333,26 @@ export const initApp = async () => {
           sessionTimeline.render(sessionEntries, 0);
           lastTimelineCount = 0;
         }
+        // 重置飞行跟踪，下次进入 Session 时重新开始
+        lastFlyToSessionOrder = -1;
         hoveredSessionId = null;
       }
 
-      deckgl.setProps({
-        layers,
-      });
+      if (deckOverlay) {
+        deckOverlay.setProps({
+          layers,
+        });
+      }
       requestAnimationFrame(animate);
     };
-    animate();
+
+      // 延迟启动动画，确保 MapboxOverlay 完全初始化
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          animate();
+        });
+      });
+    }); // 关闭 map.on('load') 回调
   } catch (error) {
     console.error(error);
     showError(error.message || "加载数据失败");

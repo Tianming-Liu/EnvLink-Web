@@ -116,13 +116,22 @@ export const preparePoints = (geojson) => {
 const blendTowards = (color, factor, baseline = 30) =>
   Math.round(color * factor + baseline * (1 - factor));
 
-export const createPointLayer = (data, elapsed, appearEnd, colorFade = 1) =>
+// 计算基于缩放级别的半径缩放因子
+const getZoomScale = (currentZoom, baseZoom = 4.24) => {
+  // 缩放因子：当放大时减小点的大小
+  return Math.pow(2, baseZoom - currentZoom);
+};
+
+export const createPointLayer = (data, elapsed, appearEnd, colorFade = 1, currentZoom = 4.24) =>
   new deck.ScatterplotLayer({
     id: "points",
     data,
     getPosition: (d) => d.geometry.coordinates,
     radiusUnits: "meters",
-    getRadius: (d) => d.properties?.pointRadius || POINT_RADIUS_METERS,
+    getRadius: (d) => {
+      const baseRadius = d.properties?.pointRadius || POINT_RADIUS_METERS;
+      return baseRadius * getZoomScale(currentZoom);
+    },
     stroked: false,
     pickable: false,
     parameters: {
@@ -140,6 +149,7 @@ export const createPointLayer = (data, elapsed, appearEnd, colorFade = 1) =>
     },
     updateTriggers: {
       getFillColor: [elapsed, colorFade],
+      getRadius: [currentZoom],
     },
   });
 
@@ -147,15 +157,18 @@ export const createPointHaloLayer = (
   data,
   elapsed,
   appearEnd,
-  colorFade = 1
+  colorFade = 1,
+  currentZoom = 4.24
 ) =>
   new deck.ScatterplotLayer({
     id: "point-halo",
     data,
     getPosition: (d) => d.geometry.coordinates,
     radiusUnits: "meters",
-    getRadius: (d) =>
-      (d.properties?.pointRadius || POINT_RADIUS_METERS) * 1.35,
+    getRadius: (d) => {
+      const baseRadius = (d.properties?.pointRadius || POINT_RADIUS_METERS) * 1.35;
+      return baseRadius * getZoomScale(currentZoom);
+    },
     stroked: false,
     pickable: false,
     parameters: {
@@ -174,39 +187,16 @@ export const createPointHaloLayer = (
     },
     updateTriggers: {
       getFillColor: [elapsed, colorFade],
+      getRadius: [currentZoom],
     },
   });
 
-export const createCountryLayer = (data) =>
-  new deck.GeoJsonLayer({
-    id: "world-admin0",
-    data,
-    stroked: true,
-    filled: true,
-    parameters: { depthTest: false },
-    getFillColor: [5, 5, 5, 255],
-    getLineColor: [90, 90, 90, 200],
-    lineWidthUnits: "pixels",
-    getLineWidth: 0.25,
-    lineWidthMinPixels: 0.3,
-    pickable: false,
-  });
+// DEPRECATED: 边界图层现在由 Mapbox Tileset 渲染
+// 保留注释以供参考原始样式配置：
+// admin0 (国家边界): fill rgb(5,5,5), stroke rgb(90,90,90) opacity 0.78, width 0.25px
+// admin1 (省级边界): stroke rgb(100,100,100) opacity 0.78, width 0.35px
 
-export const createProvinceLayer = (data) =>
-  new deck.GeoJsonLayer({
-    id: "world-admin1",
-    data,
-    stroked: true,
-    filled: false,
-    parameters: { depthTest: false },
-    getLineColor: [100, 100, 100, 200],
-    lineWidthUnits: "pixels",
-    getLineWidth: 0.35,
-    lineWidthMinPixels: 0.2,
-    pickable: false,
-  });
-
-export const createSessionHighlightLayer = (data, activeOrder, hoverId) =>
+export const createSessionHighlightLayer = (data, activeOrder, hoverId, currentZoom = 4.24) =>
   new deck.ScatterplotLayer({
     id: "session-highlights",
     data,
@@ -214,10 +204,13 @@ export const createSessionHighlightLayer = (data, activeOrder, hoverId) =>
     getPosition: (d) => d.coordinates,
     getRadius: (d) => {
       const base = SESSION_POINT_RADIUS;
+      let multiplier;
       if (hoverId && d.id === hoverId) {
-        return base * 2.5;
+        multiplier = 2.5;
+      } else {
+        multiplier = d.order === activeOrder ? 2.2 : 1.3;
       }
-      return d.order === activeOrder ? base * 2.2 : base * 1.3;
+      return base * multiplier * getZoomScale(currentZoom);
     },
     stroked: true,
     filled: true,
@@ -245,7 +238,7 @@ export const createSessionHighlightLayer = (data, activeOrder, hoverId) =>
     },
     updateTriggers: {
       getFillColor: [activeOrder, data?.length || 0, hoverId],
-      getRadius: [activeOrder, data?.length || 0, hoverId],
+      getRadius: [activeOrder, data?.length || 0, hoverId, currentZoom],
       getLineWidth: [activeOrder, data?.length || 0, hoverId],
       getLineColor: [activeOrder, data?.length || 0, hoverId],
     },
